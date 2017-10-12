@@ -16,20 +16,6 @@
 </head>
 <body>
 
-<main class="containerHome" id="">
-    <?php
-    require 'vendor/autoload.php';
-
-    use FJA\Request;
-
-    $arguments['user'] = ["avatar_url", "name", "followers", "following", "public_repos", "public_gists"];
-    $arguments['repos'] = ["limit" => "F-3"];
-    $arguments['gists'] = ["limit" => "D-3"];
-
-    $user = new Request("Cerynna", $arguments);
-
-    echo $user->helloworld();
-    ?>
 <main class="containerHome" style="background-image: url('public/images/alnnnnn.png');" id="">
     <?php  include "public/includes/pages/$link"; ?>
 </main>

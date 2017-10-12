@@ -4,11 +4,11 @@ require 'vendor/autoload.php';
 
 use FJA\Request;
 
-$arguments['user'] = ["avatar_url", "html_url", "name", "following_url", "public_repos", "public_gists"];
+$arguments['user'] = ["avatar_url", "name", "followers", "following", "public_repos", "public_gists"];
 $arguments['repos'] = ["limit" => "F-3"];
 $arguments['gists'] = ["limit" => "D-3"];
 
-$lol = new Request("Cerynna", $arguments);
+$lol = new Request("Banb4n", $arguments);
 
 echo $lol->helloworld();
 ?>
@@ -16,7 +16,7 @@ echo $lol->helloworld();
 
 <!-- Go to update -->
 <div class="fixed-action-btn">
-    <a class="btn-floating btn-large red" href="?page=update">
+    <a class="btn-floating btn-large red" href="?page=update" title="updateDisplay">
         <i class="large material-icons">mode_edit</i>
     </a>
 </div>
