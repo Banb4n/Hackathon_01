@@ -24,9 +24,9 @@
     $arguments['repos'] = ["limit" => "F-3"];
     $arguments['gists'] = ["limit" => "D-3"];
 
-    $lol = new Request("Cerynna", $arguments);
+    $user = new Request("Cerynna", $arguments);
 
-    echo $lol->helloworld();
+    print_r($user->helloworld());
 ?>
 </main>
 <!-- Modal Structure -->

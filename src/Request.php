@@ -93,9 +93,9 @@ class Request
 
 
 
-        $returnDiv .= "<div class=\"app\">";
-        $returnDiv .= "<div class=\"appHeader\">";
-        $returnDiv .= "<img src=\"" . $arrayFinal['user']['avatar_url'] . "\" alt=\"imgProfil\" class=\"circle\" width=\"120px\" height=\"120px\">";
+        $returnDiv .= "<div class=\"app\">" . PHP_EOL;
+        $returnDiv .= "<div class=\"appHeader\">" . PHP_EOL;
+        $returnDiv .= "<img src=\"" . $arrayFinal['user']['avatar_url'] . "\" alt=\"imgProfil\" class=\"circle\" width=\"120px\" height=\"120px\">" . PHP_EOL;
         $returnDiv .= "<div class=\"infos\">" . PHP_EOL;
         $returnDiv .= "<span class=\"userName\">" . $arrayFinal['user']['name'] . "</span>" . PHP_EOL;
         $returnDiv .= "<div class=\"appFollow\">" . PHP_EOL;
