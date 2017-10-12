@@ -1,8 +1,8 @@
 .containerHome {
   max-width: 100vw;
   height: 100vh;
-  background-color: dimgrey;
-  background-image: url("../images/alnnnnn.png"); }
+  /*background-color: dimgrey;*/
+  background-image: url("/public/images/alnnnnn.png"); }
 
 .card {
   width: 1vw;

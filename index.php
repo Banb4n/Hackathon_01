@@ -15,46 +15,19 @@
 <body>
 
 <main class="containerHome" id="">
-    <div class="app">
-        <!--  Pics and username github  -->
-        <div class="appHeader">
-            <img src="public/images/picsProfil.png" alt="imgProfil" class="circle" width="120px" height="120px">
-            <div class="infos">
-                <span class="userName">@userName</span>
-                <!--  Followers and following  -->
-                <div class="appFollow">
-                    <span class="followers">@followers</span>
-                    <br>
-                    <span class="following">@following</span>
-                </div>
-            </div>
-        </div>
-        <div class="divider"></div>
-        <!--  The last repos  -->
-        <div class="appRepos">
-            <div class="countCreate">
-                <p class="countRepos">@repos</p>
-                <p class="countGists">@gists</p>
-            </div>
-            <div class="divider"></div>
+    <?php
+    require 'vendor/autoload.php';
 
-            <div class="deposApp">
-                <span>Les derniers depos :</span>
-                <!--  Loop for display the lasts repos  -->
-                <ul>
-                    <li>@nomDuDêpot</li>
-                    <li>@nomDuDêpot</li>
-                    <li>@nomDuDêpot</li>
-                </ul>
-            </div>
-        </div>
-        <div class="divider"></div>
-        <div class="appFooter center">
-            <!-- Modal Trigger -->
-            <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Click here for more details</a>
-        </div>
-    </div>
+    use FJA\Request;
 
+    $arguments['user'] = ["avatar_url", "name", "followers", "following", "public_repos", "public_gists"];
+    $arguments['repos'] = ["limit" => "F-3"];
+    $arguments['gists'] = ["limit" => "D-3"];
+
+    $lol = new Request("Cerynna", $arguments);
+
+    echo $lol->helloworld();
+?>
 </main>
 <!-- Modal Structure -->
 <div id="modal1" class="modal bottom-sheet">
