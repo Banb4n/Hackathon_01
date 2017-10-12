@@ -8,7 +8,7 @@ $arguments['user'] = ["avatar_url", "name", "followers", "following", "public_re
 $arguments['repos'] = ["limit" => "F-3"];
 $arguments['gists'] = ["limit" => "D-3"];
 
-$lol = new Request("Cerynna", $arguments);
+$lol = new Request("Banb4n", $arguments);
 
 echo $lol->snippetsLite();
 ?>
@@ -16,7 +16,7 @@ echo $lol->snippetsLite();
 
 <!-- Go to update -->
 <div class="fixed-action-btn">
-    <a class="btn-floating btn-large red" href="?page=update">
+    <a class="btn-floating btn-large red" href="?page=update" title="updateDisplay">
         <i class="large material-icons">mode_edit</i>
     </a>
 </div>

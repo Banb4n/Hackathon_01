@@ -16,7 +16,6 @@
 </head>
 <body>
 
-
 <main class="containerHome" style="background-image: url('public/images/alnnnnn.png');" id="">
     <?php  include "public/includes/pages/$link"; ?>
 </main>
