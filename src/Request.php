@@ -90,37 +90,52 @@ class Request
 
 
 
-
-
-
         $returnDiv .= "<div class=\"app z-depth-4\">" . PHP_EOL;
         $returnDiv .= "<div class=\"appHeader\">" . PHP_EOL;
 
-        $arguments['user'] = ["avatar_url", "name", "followers", "following", "public_repos", "public_gists"];
+
+
         if (in_array("avatar_url", $this->arguments['user'])) {
             $returnDiv .= "<img src=\"" . $arrayFinal['user']['avatar_url'] . "\" alt=\"imgProfil\" class=\"circle\" width=\"120px\" height=\"120px\">" . PHP_EOL;
         }
         $returnDiv .= "<div class=\"infos\">" . PHP_EOL;
-        $returnDiv .= "<span class=\"userName\">" . $arrayFinal['user']['name'] . "</span>" . PHP_EOL;
+        if (in_array("name", $this->arguments['user'])) {
+            $returnDiv .= "<span class=\"userName\">" . $arrayFinal['user']['name'] . "</span>" . PHP_EOL;
+        }
         $returnDiv .= "<div class=\"appFollow\">" . PHP_EOL;
-        $returnDiv .= "<span class=\"followers chip\">Followers : " . $arrayFinal['user']['followers'] . "</span>" . PHP_EOL;
+        if (in_array("followers", $this->arguments['user'])) {
+            $returnDiv .= "<span class=\"followers chip\">Followers : " . $arrayFinal['user']['followers'] . "</span>" . PHP_EOL;
+        }
         $returnDiv .= "<br>" . PHP_EOL;
-        $returnDiv .= "<span class=\"following chip\">Following : " . $arrayFinal['user']['following'] . "</span>" . PHP_EOL;
+        if (in_array("following", $this->arguments['user'])) {
+            $returnDiv .= "<span class=\"following chip\">Following : " . $arrayFinal['user']['following'] . "</span>" . PHP_EOL;
+        }
         $returnDiv .= "</div></div></div>" . PHP_EOL;
         $returnDiv .= "<div class=\"divider\"></div>" . PHP_EOL;
         $returnDiv .= "<div class=\"appRepos\">" . PHP_EOL;
         $returnDiv .= "<div class=\"countCreate\">" . PHP_EOL;
-        $returnDiv .= "<p class=\"countRepos chip\">Depots : " . $arrayFinal['user']['public_repos'] . "</p>" . PHP_EOL;
-        $returnDiv .= "<p class=\"countGists chip\">Gists : " . $arrayFinal['user']['public_gists'] . "</p>" . PHP_EOL;
+        if (in_array("public_repos", $this->arguments['user'])) {
+            $returnDiv .= "<p class=\"countRepos chip\">Depots : " . $arrayFinal['user']['public_repos'] . "</p>" . PHP_EOL;
+        }
+        if (in_array("public_gists", $this->arguments['user'])) {
+            $returnDiv .= "<p class=\"countGists chip\">Gists : " . $arrayFinal['user']['public_gists'] . "</p>" . PHP_EOL;
+        }
         $returnDiv .= "</div>" . PHP_EOL;
         $returnDiv .= "<div class=\"divider\"></div>" . PHP_EOL;
         $returnDiv .= "<div class=\"deposApp\">" . PHP_EOL;
-        $returnDiv .= "<span>Les derniers depos :</span>" . PHP_EOL;
-        $returnDiv .= "<ul>" . PHP_EOL;
-        $returnDiv .= "<li>@nomDuDêpot</li>" . PHP_EOL;
-        $returnDiv .= "<li>@nomDuDêpot</li>" . PHP_EOL;
-        $returnDiv .= "<li>@nomDuDêpot</li>" . PHP_EOL;
-        $returnDiv .= "</ul>" . PHP_EOL;
+        if (in_array("show", $this->arguments['repos'])) {
+            $returnDiv .= "<span>Les derniers depos :</span>" . PHP_EOL;
+            $returnDiv .= "<ul>" . PHP_EOL;
+
+            foreach ($arrayFinal['repos'] as $key => $arrayOneRepos) {
+
+                $returnDiv .= "<li>" . $arrayOneRepos->name . "</li>" . PHP_EOL;
+                //$returnDiv .= "<li>lol</li>" . PHP_EOL;
+            }
+
+
+            $returnDiv .= "</ul>" . PHP_EOL;
+        }
         $returnDiv .= "</div>" . PHP_EOL;
         $returnDiv .= "</div>" . PHP_EOL;
         $returnDiv .= "<div class=\"divider\"></div>" . PHP_EOL;
@@ -131,7 +146,6 @@ class Request
 
         //$returnDiv .= "";
         return $returnDiv;
-
 
 
     }
