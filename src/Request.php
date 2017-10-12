@@ -28,7 +28,7 @@ class Request
     }
 
 
-    public function helloworld()
+    public function snippetsLite()
     {
         $returnDiv = "";
         $prenom = $this->user;
@@ -95,7 +95,11 @@ class Request
 
         $returnDiv .= "<div class=\"app\">" . PHP_EOL;
         $returnDiv .= "<div class=\"appHeader\">" . PHP_EOL;
-        $returnDiv .= "<img src=\"" . $arrayFinal['user']['avatar_url'] . "\" alt=\"imgProfil\" class=\"circle\" width=\"120px\" height=\"120px\">" . PHP_EOL;
+
+        $arguments['user'] = ["avatar_url", "name", "followers", "following", "public_repos", "public_gists"];
+        if (in_array("avatar_url", $this->arguments['user'])) {
+            $returnDiv .= "<img src=\"" . $arrayFinal['user']['avatar_url'] . "\" alt=\"imgProfil\" class=\"circle\" width=\"120px\" height=\"120px\">" . PHP_EOL;
+        }
         $returnDiv .= "<div class=\"infos\">" . PHP_EOL;
         $returnDiv .= "<span class=\"userName\">" . $arrayFinal['user']['name'] . "</span>" . PHP_EOL;
         $returnDiv .= "<div class=\"appFollow\">" . PHP_EOL;
