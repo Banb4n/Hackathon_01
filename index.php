@@ -1,10 +1,12 @@
+<?php  require 'src/rooter.php';  ?>
+
 <!doctype html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Snippets Github API's</title>
+    <title>Snippets Github API's - <?php echo $title; ?></title>
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Compiled and minified CSS -->
@@ -26,55 +28,12 @@
 
     $user = new Request("Cerynna", $arguments);
 
-    print_r($user->helloworld());
+    echo $user->helloworld();
     ?>
+<main class="containerHome" style="background-image: url('public/images/alnnnnn.png');" id="">
+    <?php  include "public/includes/pages/$link"; ?>
 </main>
-<!-- Modal Structure -->
-<div id="modal1" class="modal bottom-sheet">
-    <div class="modal-header">
-        <h4>Détails du compte github de @userName</h4>
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"><i class="material-icons">close</i></a>
-    </div>
-    <div class="modal-content">
-        <ul id="tabs-swipe-demo" class="tabs tabs-fixed-width">
-            <li class="tab"><a href="#test-swipe-1">repos</a></li>
-            <li class="tab"><a href="#test-swipe-2">gists</a></li>
-        </ul>
-        <div id="test-swipe-1" class="col s12 slideDetails">
-            <ul class="collapsible popout" data-collapsible="accordion">
-                <li>
-                    <div class="collapsible-header"><i class="material-icons">filter_drama</i>@depot1</div>
-                    <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                </li>
-                <li>
-                    <div class="collapsible-header"><i class="material-icons">place</i>@depot2</div>
-                    <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                </li>
-                <li>
-                    <div class="collapsible-header"><i class="material-icons">whatshot</i>@depot3</div>
-                    <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                </li>
-            </ul>
-        </div>
-        <div id="test-swipe-2" class="col s12 slideDetails">
-            <ul class="collapsible popout" data-collapsible="accordion">
-                <li>
-                    <div class="collapsible-header"><i class="material-icons">filter_drama</i>@gist1</div>
-                    <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                </li>
-                <li>
-                    <div class="collapsible-header"><i class="material-icons">place</i>@gist2</div>
-                    <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                </li>
-                <li>
-                    <div class="collapsible-header"><i class="material-icons">whatshot</i>@gist3</div>
-                    <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                </li>
-            </ul>
-        </div>
 
-    </div>
-</div>
 
 <!--Import jQuery before materialize.js-->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
