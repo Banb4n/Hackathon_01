@@ -27,7 +27,7 @@
     $user = new Request("Cerynna", $arguments);
 
     print_r($user->helloworld());
-?>
+    ?>
 </main>
 <!-- Modal Structure -->
 <div id="modal1" class="modal bottom-sheet">
