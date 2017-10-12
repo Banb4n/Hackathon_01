@@ -93,21 +93,21 @@ class Request
 
 
 
-        $returnDiv .= "<div class=\"app\">";
-        $returnDiv .= "<div class=\"appHeader\">";
-        $returnDiv .= "<img src=\"" . $arrayFinal['user']['avatar_url'] . "\" alt=\"imgProfil\" class=\"circle\" width=\"120px\" height=\"120px\">";
+        $returnDiv .= "<div class=\"app\">" . PHP_EOL;
+        $returnDiv .= "<div class=\"appHeader\">" . PHP_EOL;
+        $returnDiv .= "<img src=\"" . $arrayFinal['user']['avatar_url'] . "\" alt=\"imgProfil\" class=\"circle\" width=\"120px\" height=\"120px\">" . PHP_EOL;
         $returnDiv .= "<div class=\"infos\">" . PHP_EOL;
         $returnDiv .= "<span class=\"userName\">" . $arrayFinal['user']['name'] . "</span>" . PHP_EOL;
         $returnDiv .= "<div class=\"appFollow\">" . PHP_EOL;
-        $returnDiv .= "<span class=\"followers\">" . $arrayFinal['user']['followers'] . "</span>" . PHP_EOL;
+        $returnDiv .= "<span class=\"followers chip\">Followers : " . $arrayFinal['user']['followers'] . "</span>" . PHP_EOL;
         $returnDiv .= "<br>" . PHP_EOL;
-        $returnDiv .= "<span class=\"following\">" . $arrayFinal['user']['following'] . "</span>" . PHP_EOL;
+        $returnDiv .= "<span class=\"following chip\">Following : " . $arrayFinal['user']['following'] . "</span>" . PHP_EOL;
         $returnDiv .= "</div></div></div>" . PHP_EOL;
         $returnDiv .= "<div class=\"divider\"></div>" . PHP_EOL;
         $returnDiv .= "<div class=\"appRepos\">" . PHP_EOL;
         $returnDiv .= "<div class=\"countCreate\">" . PHP_EOL;
-        $returnDiv .= "<p class=\"countRepos\">" . $arrayFinal['user']['public_repos'] . "</p>" . PHP_EOL;
-        $returnDiv .= "<p class=\"countGists\">" . $arrayFinal['user']['public_gists'] . "</p>" . PHP_EOL;
+        $returnDiv .= "<p class=\"countRepos chip\">Depots : " . $arrayFinal['user']['public_repos'] . "</p>" . PHP_EOL;
+        $returnDiv .= "<p class=\"countGists chip\">Gists : " . $arrayFinal['user']['public_gists'] . "</p>" . PHP_EOL;
         $returnDiv .= "</div>" . PHP_EOL;
         $returnDiv .= "<div class=\"divider\"></div>" . PHP_EOL;
         $returnDiv .= "<div class=\"deposApp\">" . PHP_EOL;
