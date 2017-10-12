@@ -24,7 +24,7 @@ class Request
     public function __construct($user, $arguments)
     {
         $this->user = $user;
-        $this->arguments = $arguments;
+        $this->arguments = unserialize($arguments);
     }
 
 

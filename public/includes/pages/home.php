@@ -8,7 +8,7 @@ $arguments['user'] = ["avatar_url", "name", "followers", "following", "public_re
 $arguments['repos'] = ["limit" => "F-3"];
 $arguments['gists'] = ["limit" => "D-3"];
 
-$lol = new Request("Banb4n", $arguments);
+$lol = new Request("Banb4n", "a:3:{s:8:\"userName\";s:6:\"Banb4n\";s:4:\"user\";a:6:{i:0;s:4:\"name\";i:1;s:10:\"avatar_url\";i:2;s:9:\"followers\";i:3;s:9:\"following\";i:4;s:12:\"public_repos\";i:5;s:12:\"public_gists\";}s:5:\"repos\";a:1:{i:0;s:4:\"hide\";}} ");
 
 echo $lol->snippetsLite();
 ?>
@@ -16,7 +16,7 @@ echo $lol->snippetsLite();
 
 <!-- Go to update -->
 <div class="fixed-action-btn">
-    <a class="btn-floating btn-large red" href="?page=update" title="updateDisplay">
+    <a class="btn-floating btn-large red waves-effect waves-light" href="?page=update" title="updateDisplay">
         <i class="large material-icons">mode_edit</i>
     </a>
 </div>
