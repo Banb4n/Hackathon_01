@@ -4,4 +4,5 @@ $(document).ready(function(){
         dismissible: true,
     });
     $('.collapsible').collapsible();
+    $('select').material_select();
 });

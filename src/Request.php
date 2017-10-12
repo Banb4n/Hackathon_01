@@ -93,7 +93,7 @@ class Request
 
 
 
-        $returnDiv .= "<div class=\"app\">" . PHP_EOL;
+        $returnDiv .= "<div class=\"app z-depth-4\">" . PHP_EOL;
         $returnDiv .= "<div class=\"appHeader\">" . PHP_EOL;
 
         $arguments['user'] = ["avatar_url", "name", "followers", "following", "public_repos", "public_gists"];
