@@ -18,7 +18,7 @@ echo $lol->snippetsLite();
 
 <!-- Go to update -->
 <div class="fixed-action-btn">
-    <a class="btn-floating btn-large red" href="?page=update" title="updateDisplay">
+    <a class="btn-floating btn-large red waves-effect waves-light" href="?page=update" title="updateDisplay">
         <i class="large material-icons">mode_edit</i>
     </a>
 </div>
