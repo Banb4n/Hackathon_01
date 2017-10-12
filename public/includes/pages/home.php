@@ -10,7 +10,7 @@ $arguments['gists'] = ["limit" => "D-3"];
 
 $lol = new Request("Banb4n", $arguments);
 
-echo $lol->helloworld();
+echo $lol->snippetsLite();
 ?>
 
 
