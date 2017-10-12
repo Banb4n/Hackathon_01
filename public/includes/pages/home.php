@@ -4,11 +4,13 @@ require 'vendor/autoload.php';
 
 use FJA\Request;
 
-$arguments['user'] = ["avatar_url", "name", "followers", "following", "public_repos", "public_gists"];
-$arguments['repos'] = ["limit" => "F-3"];
-$arguments['gists'] = ["limit" => "D-3"];
+$arguments['user'] = ["avatar_url", "followers", "following", "public_repos", "public_gists"];
+$arguments['repos'] = ["limit" => "F-3", "hide"];
+$arguments['gists'] = ["limit" => "D-3", "show"];
 
-$lol = new Request("Banb4n", $arguments);
+echo serialize($arguments);
+
+$lol = new Request("Banb4n", serialize($arguments));
 
 echo $lol->snippetsLite();
 ?>
