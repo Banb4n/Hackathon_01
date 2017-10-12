@@ -95,7 +95,8 @@ class Request
         /* ARRAY FINAL */
 
 
-        $returnDiv .= "<div class=\"app\">" . PHP_EOL;
+
+        $returnDiv .= "<div class=\"app z-depth-4\">" . PHP_EOL;
         $returnDiv .= "<div class=\"appHeader\">" . PHP_EOL;
 
 
