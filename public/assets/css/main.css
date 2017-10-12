@@ -1,0 +1,57 @@
+.containerHome {
+  max-width: 100vw;
+  height: 100vh;
+  background-color: dimgrey;
+  background-image: url("../images/alnnnnn.png"); }
+
+.card {
+  width: 1vw;
+  margin: auto;
+  position: relative;
+  top: 50vh;
+  transform: translatey(-50%); }
+
+.app {
+  width: 350px;
+  height: 60vh;
+  padding: 20px 20px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 10px;
+  margin: auto;
+  top: 50vh;
+  transform: translatey(-50%);
+  position: relative; }
+  .app .appHeader {
+    display: flex;
+    justify-content: space-around;
+    padding: 15px 10px; }
+    .app .appHeader .userName {
+      margin-top: 30px;
+      color: blue;
+      font-size: 1.5em;
+      font-family: "Ubuntu Condensed", sans-serif;
+      height: 100%; }
+  .app .appFollow {
+    padding: 10px 5px; }
+  .app .appRepos .countCreate {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px; }
+  .app .deposApp {
+    padding: 10px 25px; }
+    .app .deposApp ul {
+      text-align: center; }
+
+.modal-header {
+  padding: 20px 0 5px 10px;
+  display: flex;
+  justify-content: space-between; }
+
+.modal.bottom-sheet {
+  min-height: 80%; }
+
+.slideDetails {
+  padding: 50px 15px;
+  background-color: lightgrey; }
+
+/*# sourceMappingURL=main.css.map */
