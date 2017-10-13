@@ -31,9 +31,8 @@ class Request
     public function snippetsLite($affichExtend)
     {
         $returnDiv = "";
-        $token = '##'; // Banban
-
-
+        $token = '379787b2f44d003489cbea5e5ad445ce461beed6'; // Banban
+        $arrayFinal = "";
 
         $url = "https://api.github.com/users/$this->user";
         $user = curl_init();
@@ -45,7 +44,11 @@ class Request
         $dataUser = curl_exec($user);
         curl_close($user);
         $arrayUser = json_decode($dataUser);
-
+        foreach ($arrayUser as $key => $value) {
+            if (in_array($key, $this->arguments['user'])) {
+                $arrayFinal['user'][$key] = $value;
+            }
+        }
 
         $repos = curl_init();
         curl_setopt($repos, CURLOPT_URL, "$arrayUser->repos_url");
@@ -56,11 +59,7 @@ class Request
         $dataRepos = curl_exec($repos);
         curl_close($repos);
         $arrayRepos = json_decode($dataRepos);
-        foreach ($arrayRepos as $key => $array) {
-            $sort[$key] = strtotime($array->pushed_at);
-            //$returnDiv .= $array->pushed_at . PHP_EOL;
-        }
-        array_multisort($sort, SORT_DESC, $arrayRepos);
+
 
 
         $linkGists = preg_replace("/(\{.*?\})/", "", $arrayUser->gists_url);
@@ -74,11 +73,7 @@ class Request
         curl_close($gists);
         $arrayGists = json_decode($dataGists);
 
-        foreach ($arrayUser as $key => $value) {
-            if (in_array($key, $this->arguments['user'])) {
-                $arrayFinal['user'][$key] = $value;
-            }
-        }
+
         $limitRepos = $this->arguments['repos']['limit'];
 
 
@@ -168,7 +163,7 @@ class Request
     public function snippetsFat()
     {
         $returnDiv = "";
-        $token = '##'; // Banban
+        $token = '379787b2f44d003489cbea5e5ad445ce461beed6'; // Banban
 
         $url = "https://api.github.com/users/$this->user";
         $user = curl_init();
@@ -196,11 +191,7 @@ class Request
         $dataRepos = curl_exec($repos);
         curl_close($repos);
         $arrayRepos = json_decode($dataRepos);
-        foreach ($arrayRepos as $key => $array) {
-            $sort[$key] = strtotime($array->pushed_at);
-            //$returnDiv .= $array->pushed_at . PHP_EOL;
-        }
-        array_multisort($sort, SORT_DESC, $arrayRepos);
+
 
 
         $linkGists = preg_replace("/(\{.*?\})/", "", $arrayUser->gists_url);
