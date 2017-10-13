@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,700");
 .containerHome {
   max-width: 100vw;
   height: 100vh; }
@@ -26,9 +27,9 @@
     padding: 15px 10px; }
     .app .appHeader .userName {
       margin-top: 30px;
-      color: lighblue;
-      font-size: 1.5em;
-      font-family: "Ubuntu Condensed", sans-serif;
+      color: black;
+      font-size: 2em;
+      font-family: 'Roboto', sans-serif;
       height: 100%; }
   .app .appFollow {
     padding: 10px 5px; }

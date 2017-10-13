@@ -1,11 +1,17 @@
+// Import google fonts
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+
+// Variables
 $choiceColorJs: lightgrey;
 $secondChoiceColorJs: lighblue;
 
+// Container App
 .containerHome {
   max-width: 100vw;
   height: 100vh;
 }
 
+// Container Form
 .card {
   width: 90vw;
   margin: auto;
@@ -16,6 +22,7 @@ $secondChoiceColorJs: lighblue;
   background: rgba($choiceColorJs, 0.95);
 }
 
+// The div app
 .app {
   width: 350px;
   padding: 20px 20px;
@@ -25,21 +32,25 @@ $secondChoiceColorJs: lighblue;
   top: 50vh;
   transform: translatey(-50%);
   position: relative;
+    // header div
     .appHeader {
       display: flex;
       justify-content: space-around;
       padding: 15px 10px;
+      // title div
       .userName {
         margin-top: 30px;
-        color: $secondChoiceColorJs;
-        font-size: 1.5em;
-        font-family: "Ubuntu Condensed", sans-serif;
+        color: black;
+        font-size: 2em;
+        font-family: 'Roboto', sans-serif;
         height: 100%;
       }
     }
+    // Followers and following github
     .appFollow {
       padding: 10px 5px;
     }
+    // Depos github
     .appRepos {
       .countCreate {
         display: flex;
@@ -47,6 +58,7 @@ $secondChoiceColorJs: lighblue;
         padding: 10px;
       }
     }
+    // container 3 most recent depos
     .deposApp {
       padding: 10px 25px;
       span {
@@ -70,26 +82,28 @@ $secondChoiceColorJs: lighblue;
     text-shadow: 0 2px 2px black;
   }
 }
-
+// Modal fixed bottom for details
 .modal.bottom-sheet {
   min-height: 80%;
 }
-
+// Tabs who contains the datas of repo
 .tab {
   border: 1px solid lightgrey;
   font-size: 2em;
 }
-
+// Containers sliders tabs
 .slideDetails {
   padding: 50px 15px;
   background-color: ghostwhite;
   border: 1px solid lightgrey;
 }
 
+// Collapsible for details of depos
 .collapsible {
   li {
     margin: 20px 0;
   }
+  //header of Collapse
   .collapsible-header {
     display: flex;
     justify-content: space-between;
@@ -100,6 +114,7 @@ $secondChoiceColorJs: lighblue;
   .collapsible-body {
 
   }
+  // Footer collapse
   .collapsible-footer {
     padding: 10px 30px;
     span {

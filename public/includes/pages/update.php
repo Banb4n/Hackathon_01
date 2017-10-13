@@ -8,6 +8,7 @@ if (isset($_POST)) {
 
     array_push($arguments['repos'], $_POST['repos'][0]);
 
+    $serveur = str_replace('index.php','',$_SERVER['SCRIPT_URI']);
 
 }
 
