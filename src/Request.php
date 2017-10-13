@@ -58,11 +58,6 @@ class Request
 
         $limitRepos = $this->arguments['repos']['limit'];
 
-        foreach ($tableRepos as $key => $part) {
-            $sort[$key] = strtotime($part['pushed_at']);
-        }
-        array_multisort($sort, SORT_DESC, $tableRepos);
-
 
         $limiterRepos = explode("-", $limitRepos);
         $nbRepos = $arrayUser->public_repos - 1;
