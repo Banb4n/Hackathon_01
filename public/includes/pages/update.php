@@ -1,30 +1,13 @@
 <?php
 
 if(isset($_POST)) {
-//    print_r($_POST) . PHP_EOL;
-    echo serialize($_POST['user']);
-    echo '<br />';
-    echo serialize($_POST['repos']);
-    echo '<br />';
     $arguments['user'] = $_POST['user'];
     $arguments['repos'] = ["limit" => "D-3"];
     $arguments['gists'] = ["limit" => "D-3", "show"];
 
     array_push($arguments['repos'], $_POST['repos'][0]);
 
-    /*$arguments['user'] = implode("-",$arguments['user']);
-    $arguments['repos'] = implode("-",$arguments['repos']);
-    $arguments['gists'] = implode("-",$arguments['gists']);
-    $arguments = implode("*",$arguments);*/
-echo "<pre>";
-print_r($_SERVER['SCRIPT_URI']);
-$serveur = str_replace('index.php','',$_SERVER['SCRIPT_URI']);
-//
-
-    echo "</pre>";
-     echo "<&#63;php include ('" . $serveur ."snippets.php?user=" . $_POST['userName'] . "&var=" . serialize($arguments) . "');  &#63;>";
-    echo "<br />";
-    echo "Array ( [user] => Array ( [0] => avatar_url [1] => login [2] => followers [3] => following [4] => public_repos [5] => public_gists ) [repos] => Array ( [limit] => F-3 [0] => show ) [gists] => Array ( [limit] => D-3 [0] => show ) ) ";
+    $serveur = str_replace('index.php','',$_SERVER['SCRIPT_URI']);
 }
 
 ?>
