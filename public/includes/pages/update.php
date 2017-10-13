@@ -98,14 +98,7 @@ if (isset($_POST)) {
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                <textarea id="textarea1" class="materialize-textarea" readonly><?php
-
-                        echo file_get_contents("cache.html");
-
-
-                    ?>
-
-                </textarea>
+                <textarea id="textarea1" class="materialize-textarea" readonly><?php echo file_get_contents("cache.html"); ?></textarea>
                             <label for="textarea1">Code HTML à intégrer</label>
                         </div>
                     </div>
