@@ -73,3 +73,23 @@ $secondChoiceColorJs: lighblue;
   padding: 50px 15px;
   background-color: lightgrey;
 }
+
+.collapsible {
+  .collapsible-header {
+    display: flex;
+    justify-content: space-between;
+    &:hover {
+      background-color: #grey;
+    }
+  }
+  .collapsible-body {
+
+  }
+  .collapsible-footer {
+    padding: 10px 30px;
+    span {
+      margin-left: 50px;
+    }
+  }
+
+}

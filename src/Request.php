@@ -30,6 +30,7 @@ class Request
     public function snippetsLite()
     {
         $returnDiv = "";
+        $token = '1ba7cd1007b0cec3674bf241740d2d014da6672e'; // Banban
         $prenom = $this->user;
         $url = 'https://api.github.com/users/Cerynna';
         $user = curl_init();
@@ -37,11 +38,10 @@ class Request
         curl_setopt($user, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($user, CURLOPT_HEADER, 0);
         curl_setopt($user, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 6.1; fr; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13');
-        curl_setopt($user, CURLOPT_HTTPHEADER, array('Content-Type: application/json', "Authorization: Bearer f7e6e0bdbf3c19ef8af5635c38a0057d68b9c416"));
+        curl_setopt($user, CURLOPT_HTTPHEADER, array('Content-Type: application/json', "Authorization: Bearer $token"));
         $dataUser = curl_exec($user);
         curl_close($user);
         $arrayUser = json_decode($dataUser);
-        $returnDiv = serialize($arrayUser);
 
 
 
@@ -50,7 +50,7 @@ class Request
         curl_setopt($repos, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($repos, CURLOPT_HEADER, 0);
         curl_setopt($repos, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 6.1; fr; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13');
-        curl_setopt($repos, CURLOPT_HTTPHEADER, array('Content-Type: application/json', "Authorization: Bearer f7e6e0bdbf3c19ef8af5635c38a0057d68b9c416"));
+        curl_setopt($repos, CURLOPT_HTTPHEADER, array('Content-Type: application/json', "Authorization: Bearer $token"));
         $dataRepos = curl_exec($repos);
         curl_close($repos);
         $arrayRepos = json_decode($dataRepos);
@@ -67,7 +67,7 @@ class Request
         curl_setopt($gists, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($gists, CURLOPT_HEADER, 0);
         curl_setopt($gists, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 6.1; fr; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13');
-        curl_setopt($gists, CURLOPT_HTTPHEADER, array('Content-Type: application/json', "Authorization: Bearer f7e6e0bdbf3c19ef8af5635c38a0057d68b9c416"));
+        curl_setopt($gists, CURLOPT_HTTPHEADER, array('Content-Type: application/json', "Authorization: Bearer $token"));
         $dataGists = curl_exec($gists);
         curl_close($gists);
         $arrayGists = json_decode($dataGists);
