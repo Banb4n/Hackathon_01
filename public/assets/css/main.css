@@ -93,5 +93,12 @@
 .copied .copiedtext {
   opacity: 1;
   transform: translateY(-2em); }
+.centerApp {
+    margin: auto;
+    position: relative;
+    top: 50vh;
+    transform: translatey(-50%);
+
+}
 
 /*# sourceMappingURL=main.css.map */

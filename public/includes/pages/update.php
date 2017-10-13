@@ -40,7 +40,7 @@ if (isset($_POST)) {
                 <form class="container" action="#" method="post">
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="userName" name="userName" type="text" class="validate" value="Banb4n">
+                            <input id="userName" name="userName" type="text" class="validate" required>
                             <label for="userName">@userName</label>
                         </div>
                     </div>
@@ -98,9 +98,9 @@ if (isset($_POST)) {
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-               
+
                   <textarea  id="to-copy" spellcheck="false"  class="materialize-textarea" readonly><?php echo file_get_contents("cache.html"); ?></textarea>
-                          
+
 
                             <a id="copy" class="btn" title="Copied HTML code"><i class="large material-icons">content_copy</i></a>
                 <label for="to-copy">Code HTML à intégrer</label>
