@@ -30,7 +30,7 @@ class Request
     public function snippetsLite()
     {
         $returnDiv = "";
-        $token = 'yourToken'; // Banban
+        $token = 'e070de52a968f088574dee39b1a2d3acecaa68ea'; // Banban
         $prenom = $this->user;
         $url = 'https://api.github.com/users/Banb4n';
         $user = curl_init();
@@ -161,6 +161,7 @@ class Request
     public function snippetsFat()
     {
         $returnDiv = "";
+            $token = 'e070de52a968f088574dee39b1a2d3acecaa68ea'; // Banban
         $prenom = $this->user;
         $url = 'https://api.github.com/users/Cerynna';
         $user = curl_init();
@@ -207,7 +208,7 @@ class Request
         $arrayGists = json_decode($dataGists);
         
         foreach ($arrayGists as $key => $array) {
-            $sort[$key] = strtotime($array->pushed_at);
+            $sort[$key] = strtotime($array->updated_at);
             //$returnDiv .= $array->pushed_at . PHP_EOL;
         }
         array_multisort($sort, SORT_DESC, $arrayGists);
