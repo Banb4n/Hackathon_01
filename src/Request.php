@@ -15,6 +15,7 @@ class Request
 
     public $arguments;
 
+
     /**
      * Request constructor.
      * @param $user
@@ -27,10 +28,11 @@ class Request
     }
 
 
-    public function snippetsLite()
+    public function snippetsLite($affichExtend)
     {
         $returnDiv = "";
-        $token = '0fc88319460a50dfbfb014a7a34eafb1d2c86637'; // Banban
+        $token = 'myToken'; // Banban
+
 
         $url = "https://api.github.com/users/$this->user";
         $user = curl_init();
@@ -147,9 +149,15 @@ class Request
         }
         $returnDiv .= "</div>" . PHP_EOL;
         $returnDiv .= "</div>" . PHP_EOL;
-        $returnDiv .= "<div class=\"appFooter center\">" . PHP_EOL;
-        $returnDiv .= "<a class=\"waves-effect waves-light btn modal-trigger amber white-text\" href=\"#modal1\">Click here for more details</a>" . PHP_EOL;
-        $returnDiv .= "</div>" . PHP_EOL;
+
+        if ($affichExtend == TRUE) {
+            $returnDiv .= "<div class=\"appFooter center\">" . PHP_EOL;
+            $returnDiv .= "<a class=\"waves-effect waves-light btn modal-trigger amber white-text\" href=\"#modal1\">Click here for more details</a>" . PHP_EOL;
+            $returnDiv .= "</div>" . PHP_EOL;
+        }
+
+
+
         $returnDiv .= "</div>" . PHP_EOL;
 
         //$returnDiv .= "";
@@ -159,7 +167,8 @@ class Request
     public function snippetsFat()
     {
         $returnDiv = "";
-        $token = '0fc88319460a50dfbfb014a7a34eafb1d2c86637'; // Banban
+        $token = 'myToken'; // Banban
+
         $url = "https://api.github.com/users/$this->user";
         $user = curl_init();
         curl_setopt($user, CURLOPT_URL, $url);

@@ -1,6 +1,7 @@
 <?php
 
-if(isset($_POST)) {
+if (isset($_POST)) {
+
     $arguments['user'] = $_POST['user'];
     $arguments['repos'] = ["limit" => "D-3"];
     $arguments['gists'] = ["limit" => "D-3", "show"];
@@ -8,6 +9,7 @@ if(isset($_POST)) {
     array_push($arguments['repos'], $_POST['repos'][0]);
 
     $serveur = str_replace('index.php','',$_SERVER['SCRIPT_URI']);
+
 }
 
 ?>
@@ -23,31 +25,31 @@ if(isset($_POST)) {
         <div class="row">
             <div class="col s4">
                 <p>
-                    <input type="checkbox" id="displayUserName" checked="checked" name="user[]" value="login" />
+                    <input type="checkbox" id="displayUserName" checked="checked" name="user[]" value="login"/>
                     <label for="displayUserName">Afficher le userName : </label>
                 </p>
                 <p>
-                    <input type="checkbox" id="displayPicsProfil" checked="checked" name="user[]" value="avatar_url" />
+                    <input type="checkbox" id="displayPicsProfil" checked="checked" name="user[]" value="avatar_url"/>
                     <label for="displayPicsProfil">Afficher la photo de profil : </label>
                 </p>
             </div>
             <div class="col s4">
                 <p>
-                    <input type="checkbox" id="displayFollowers" checked="checked" name="user[]" value="followers" />
+                    <input type="checkbox" id="displayFollowers" checked="checked" name="user[]" value="followers"/>
                     <label for="displayFollowers">Afficher le total de followers : </label>
                 </p>
                 <p>
-                    <input type="checkbox" id="displayFollowings" checked="checked" name="user[]" value="following" />
+                    <input type="checkbox" id="displayFollowings" checked="checked" name="user[]" value="following"/>
                     <label for="displayFollowings">Afficher le total de followers : </label>
                 </p>
             </div>
             <div class="col s4">
                 <p>
-                    <input type="checkbox" id="displayRepos" checked="checked" name="user[]" value="public_repos" />
+                    <input type="checkbox" id="displayRepos" checked="checked" name="user[]" value="public_repos"/>
                     <label for="displayRepos">Afficher les depôts : </label>
                 </p>
                 <p>
-                    <input type="checkbox" id="displayGists" checked="checked" name="user[]" value="public_gists" />
+                    <input type="checkbox" id="displayGists" checked="checked" name="user[]" value="public_gists"/>
                     <label for="displayGists">Afficher les gists : </label>
                 </p>
             </div>
@@ -62,29 +64,42 @@ if(isset($_POST)) {
                 <label for="displayList">Afficher la liste des dépôts</label>
             </div>
             <p class="col s4 offset-s1">
-                <input type="checkbox" id="extends" checked="checked" name="extends" value="true" />
-                <label for="extends">Génèrez le code HTML : </label>
+                <input type="checkbox" id="extends" checked="checked" name="extends" value="true"/>
+                <label for="extends">Modal de détail : </label>
             </p>
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <textarea id="textarea1" class="materialize-textarea" readonly></textarea>
+                <textarea id="textarea1" class="materialize-textarea" readonly><?php
+                    if (!empty($_POST)) {
+                        if (!empty($_POST['extends'])) {
+                            $extention = "&extends";
+                        }
+                        else {
+                            $extention = "";
+                        }
+
+                        echo "&#60;div&#62;&#60;object  style=\"width: 380px;height: 500px;\" data='" . $serveur . "snippets.php?user=" . $_POST['userName'] . "&var=" . serialize($arguments) . $extention . "' type=\"text/html\"&#62;&#60;/object&#62; &#60;/div&#62;";
+                    }
+                    ?>
+
+                </textarea>
                 <label for="textarea1">Code HTML à intégrer</label>
             </div>
         </div>
 
-<!--        <div class="row">-->
-<!--            <div class="input-field col s12">-->
-<!--                <input id="password" type="password" class="validate">-->
-<!--                <label for="password">Password</label>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="row">-->
-<!--            <div class="input-field col s12">-->
-<!--                <input id="email" type="email" class="validate">-->
-<!--                <label for="email">Email</label>-->
-<!--            </div>-->
-<!--        </div>-->
+        <!--        <div class="row">-->
+        <!--            <div class="input-field col s12">-->
+        <!--                <input id="password" type="password" class="validate">-->
+        <!--                <label for="password">Password</label>-->
+        <!--            </div>-->
+        <!--        </div>-->
+        <!--        <div class="row">-->
+        <!--            <div class="input-field col s12">-->
+        <!--                <input id="email" type="email" class="validate">-->
+        <!--                <label for="email">Email</label>-->
+        <!--            </div>-->
+        <!--        </div>-->
         <div class="row">
             <div class="col s3 offset-s9">
                 <button class="btn waves-effect waves-light" type="submit">Submit

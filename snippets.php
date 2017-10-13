@@ -22,10 +22,19 @@ require 'vendor/autoload.php';
 
 use FJA\Request;
 
+if (isset($_GET['extends'])) {
+    $varExtend = TRUE;
+}else {
+    $varExtend = FALSE;
+}
+
 $user = new Request($_GET['user'], $_GET['var']);
 
-echo $user->snippetsLite();
-echo $user->snippetsFat();
+echo $user->snippetsLite($varExtend);
+if (isset($_GET['extends'])) {
+    echo $user->snippetsFat();
+}
+
 
 
 ?>
