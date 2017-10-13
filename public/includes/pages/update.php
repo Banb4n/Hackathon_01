@@ -8,7 +8,7 @@ if (isset($_POST)) {
 
     array_push($arguments['repos'], $_POST['repos'][0]);
 
-    $serveur = str_replace('index.php','',$_SERVER['SCRIPT_URI']);
+    $serveur = explode("index.php",$_SERVER['HTTP_REFERER']);
 
 }
 
@@ -72,14 +72,16 @@ if (isset($_POST)) {
             <div class="input-field col s12">
                 <textarea id="textarea1" class="materialize-textarea" readonly><?php
                     if (!empty($_POST)) {
-                        if (!empty($_POST['extends'])) {
-                            $extention = "&extends";
-                        }
-                        else {
-                            $extention = "";
-                        }
+                        $extention = (!empty($_POST['extends'])?"&extends" :"" ) ;
 
-                        echo "&#60;div&#62;&#60;object  style=\"width: 380px;height: 500px;\" data='" . $serveur . "snippets.php?user=" . $_POST['userName'] . "&var=" . serialize($arguments) . $extention . "' type=\"text/html\"&#62;&#60;/object&#62; &#60;/div&#62;";
+                        echo "&#60;div&#62;&#60;object  style=\"width: 380px;height: 500px;\" data='" . $serveur[0] . "snippets.php?user=" . $_POST['userName'] . "&var=" . serialize($arguments) . $extention . "' type=\"text/html\"&#62;&#60;/object&#62; &#60;/div&#62;";
+
+                        $result = array_map("unserialize", array_unique(array_map("serialize", $result)));
+                        $file = fopen("../arrayDir.php", "r+");
+                        $results = serialize($result);
+                        fwrite($file, $results);
+                        fclose($file);
+
                     }
                     ?>
 
