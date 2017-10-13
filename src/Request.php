@@ -30,7 +30,7 @@ class Request
     public function snippetsLite()
     {
         $returnDiv = "";
-        $token = '74dc724df6b0ded9220e326701c5d6bde8a95677'; // Banban
+        $token = '6ecaddc1fad8174b17196a999d930ca43ef546fa'; // Banban
 
         $url = "https://api.github.com/users/$this->user";
         $user = curl_init();
@@ -160,7 +160,7 @@ class Request
     public function snippetsFat()
     {
         $returnDiv = "";
-        $token = '74dc724df6b0ded9220e326701c5d6bde8a95677'; // Banban
+        $token = '6ecaddc1fad8174b17196a999d930ca43ef546fa'; // Banban
         $url = "https://api.github.com/users/$this->user";
         $user = curl_init();
         curl_setopt($user, CURLOPT_URL, $url);
@@ -204,17 +204,7 @@ class Request
         $dataGists = curl_exec($gists);
         curl_close($gists);
         $arrayGists = json_decode($dataGists);
-
-        foreach ($arrayGists as $key => $array) {
-            //var_dump($array);
-            $sort[$key] = strtotime($array->created_at);
-            //$returnDiv .= $array->created_at . PHP_EOL;
-        }
-        array_multisort($sort, SORT_DESC, $arrayGists);
-//var_dump($arrayGists);
-
         $limitRepos = $this->arguments['repos']['limit'];
-
 
         $limiterRepos = explode("-", $limitRepos);
         $nbRepos = $arrayUser->public_repos - 1;
@@ -246,7 +236,8 @@ class Request
 
         $returnDiv .= "<div id=\"modal1\" class=\"modal bottom-sheet\">" . PHP_EOL;
         $returnDiv .= "<div class=\"modal-header\">" . PHP_EOL;
-        $returnDiv .= "<h4>Détails du compte github de " . $arrayFinal['user']['name'] . "</h4>" . PHP_EOL;
+       // var_dump($arrayFinal);
+        $returnDiv .= "<h4>Détails du compte github de @" . $arrayFinal['user']['login'] . "</h4>" . PHP_EOL;
         $returnDiv .= "<a href=\"#!\" class=\"modal-action modal-close waves-effect waves-green btn-flat\"><i class=\"material-icons\">close</i></a>" . PHP_EOL;
         $returnDiv .= "</div>" . PHP_EOL;
         $returnDiv .= "<div class=\"modal-content\">" . PHP_EOL;
@@ -274,9 +265,14 @@ class Request
             $returnDiv .= "</div>" . PHP_EOL;
             $returnDiv .= "</div>" . PHP_EOL;
             $returnDiv .= "<div class=\"collapsible-footer\">" . PHP_EOL;
-            $returnDiv .= "<div class=\"chip red white-text\">" . PHP_EOL;
-            $returnDiv .= $arrayOneRepos->language . PHP_EOL;
-            $returnDiv .= "</div>" . PHP_EOL;
+
+            if ($arrayOneRepos->language !== NULL) {
+                $returnDiv .= "<div class=\"chip red white-text\">" . PHP_EOL;
+                $returnDiv .= $arrayOneRepos->language . PHP_EOL;
+                $returnDiv .= "</div>" . PHP_EOL;
+            }
+
+
             $returnDiv .= "<span>" . $arrayOneRepos->forks . " Forks</span>" . PHP_EOL;
             $returnDiv .= "</div>" . PHP_EOL;
             $returnDiv .= "</li>" . PHP_EOL;
