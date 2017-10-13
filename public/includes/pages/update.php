@@ -2,8 +2,10 @@
 
 if (isset($_POST)) {
 
+    var_dump($_POST);
+
     $arguments['user'] = $_POST['user'];
-    $arguments['repos'] = ["limit" => "D-3"];
+    $arguments['repos'] = ["limit" => "D-" . $_POST['range']];
     $arguments['gists'] = ["limit" => "D-3", "show"];
 
     array_push($arguments['repos'], $_POST['repos'][0]);
@@ -14,9 +16,9 @@ if (isset($_POST)) {
 
     $returnDiv = "&#60;div&#62;&#60;object  style=\"width: 380px;height: 500px;\" data='" . $serveur[0] . "snippets.php?user=" . $_POST['userName'] . "&var=" . serialize($arguments) . $extention . "' type=\"text/html\"&#62;&#60;/object&#62; &#60;/div&#62;";
 
-//    unlink("cache.html");
-//    file_put_contents("cache.html", $returnDiv);
-//    chmod("cache.html", 0777);
+    unlink("cache.html");
+    file_put_contents("cache.html", $returnDiv);
+    chmod("cache.html", 0777);
 
 }
 
@@ -92,8 +94,8 @@ if (isset($_POST)) {
                             <label for="displayList">Afficher la liste des dépôts</label>
                         </div>
                         <div class="range-field col s4">
-                            <label for="test5">Nombres de depôt : </label>
-                            <input type="range" id="test5" min="1" max="6" />
+                            <label for="range">Nombres de depôt : </label>
+                            <input type="range" id="range" name="range" min="1" max="6" />
                         </div>
                         <p class="col s4">
                             <input type="checkbox" id="extends" checked="checked" name="extends" value="true"/>
