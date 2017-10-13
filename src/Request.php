@@ -30,7 +30,7 @@ class Request
     public function snippetsLite()
     {
         $returnDiv = "";
-        $token = 'yourToken'; // Banban
+        $token = 'ee20f33dcb4add83aebefdca12195b4ddf7bc6ca'; // Banban
         $prenom = $this->user;
         $url = 'https://api.github.com/users/Banb4n';
         $user = curl_init();
@@ -42,6 +42,7 @@ class Request
         $dataUser = curl_exec($user);
         curl_close($user);
         $arrayUser = json_decode($dataUser);
+
 
 
         $repos = curl_init();
@@ -155,171 +156,8 @@ class Request
 
         //$returnDiv .= "";
         return $returnDiv;
-    }
 
 
-    public function snippetsFat()
-    {
-        $returnDiv = "";
-        $prenom = $this->user;
-        $url = 'https://api.github.com/users/Cerynna';
-        $user = curl_init();
-        curl_setopt($user, CURLOPT_URL, 'https://api.github.com/users/Cerynna');
-        curl_setopt($user, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($user, CURLOPT_HEADER, 0);
-        curl_setopt($user, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 6.1; fr; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13');
-        curl_setopt($user, CURLOPT_HTTPHEADER, array('Content-Type: application/json', "Authorization: Bearer $token"));
-        $dataUser = curl_exec($user);
-        curl_close($user);
-        $arrayUser = json_decode($dataUser);
-        foreach ($arrayUser as $key => $value) {
-            if (in_array($key, $this->arguments['user'])) {
-                $arrayFinal['user'][$key] = $value;
-            }
-        }
-
-        $repos = curl_init();
-        
-        curl_setopt($repos, CURLOPT_URL, "$arrayUser->repos_url");
-        curl_setopt($repos, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($repos, CURLOPT_HEADER, 0);
-        curl_setopt($repos, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 6.1; fr; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13');
-        curl_setopt($repos, CURLOPT_HTTPHEADER, array('Content-Type: application/json', "Authorization: Bearer $token"));
-        $dataRepos = curl_exec($repos);
-        curl_close($repos);
-        $arrayRepos = json_decode($dataRepos);
-        foreach ($arrayRepos as $key => $array) {
-            $sort[$key] = strtotime($array->pushed_at);
-            //$returnDiv .= $array->pushed_at . PHP_EOL;
-        }
-        array_multisort($sort, SORT_DESC, $arrayRepos);
-
-
-        $linkGists = preg_replace("/(\{.*?\})/", "", $arrayUser->gists_url);
-        $gists = curl_init();
-        curl_setopt($gists, CURLOPT_URL, "$linkGists");
-        curl_setopt($gists, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($gists, CURLOPT_HEADER, 0);
-        curl_setopt($gists, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 6.1; fr; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13');
-        curl_setopt($gists, CURLOPT_HTTPHEADER, array('Content-Type: application/json', "Authorization: Bearer $token"));
-        $dataGists = curl_exec($gists);
-        curl_close($gists);
-        $arrayGists = json_decode($dataGists);
-        
-        foreach ($arrayGists as $key => $array) {
-            $sort[$key] = strtotime($array->pushed_at);
-            //$returnDiv .= $array->pushed_at . PHP_EOL;
-        }
-        array_multisort($sort, SORT_DESC, $arrayGists);
-
-        
-        $limitRepos = $this->arguments['repos']['limit'];
-
-
-        $limiterRepos = explode("-", $limitRepos);
-        $nbRepos = $arrayUser->public_repos - 1;
-        if ($limiterRepos[0] == "D") {
-            for ($i = 0; $i < $limiterRepos[1]; $i++) {
-                $arrayFinal['repos'][$i] = $arrayRepos[$i];
-            }
-        }
-        if ($limiterRepos[0] == "F") {
-            for ($i = $nbRepos; $i > ($nbRepos - $limiterRepos[1]); $i--) {
-                $arrayFinal['repos'][$i] = $arrayRepos[$i];
-            }
-
-        }
-        $limitGists = $this->arguments['gists']['limit'];
-        $limiterGists = explode("-", $limitGists);
-        $nbGists = $arrayUser->public_repos - 1;
-        if ($limiterGists[0] == "D") {
-            for ($i = 0; $i < $limiterGists[1]; $i++) {
-                $arrayFinal['gists'][$i] = $arrayGists[$i];
-            }
-        }
-        if ($limiterGists[0] == "F") {
-            for ($i = $nbGists; $i > ($nbGists - $limiterGists[1]); $i--) {
-                $arrayFinal['gists'][$i] = $arrayGists[$i];
-            }
-        }
-
-
-        $returnDiv .= "<div id=\"modal1\" class=\"modal bottom-sheet\">" . PHP_EOL;
-        $returnDiv .= "<div class=\"modal-header\">" . PHP_EOL;
-        $returnDiv .= "<h4>Détails du compte github de " . $arrayFinal['user']['name'] . "</h4>" . PHP_EOL;
-        $returnDiv .= "<a href=\"#!\" class=\"modal-action modal-close waves-effect waves-green btn-flat\"><i class=\"material-icons\">close</i></a>" . PHP_EOL;
-        $returnDiv .= "</div>" . PHP_EOL;
-        $returnDiv .= "<div class=\"modal-content\">" . PHP_EOL;
-        $returnDiv .= "<ul id=\"tabs-swipe-demo\" class=\"tabs tabs-fixed-width\">" . PHP_EOL;
-        $returnDiv .= "<li class=\"tab\"><a href=\"#test-swipe-1\">repos</a></li>" . PHP_EOL;
-        $returnDiv .= "<li class=\"tab\"><a href=\"#test-swipe-2\">gists</a></li>" . PHP_EOL;
-        $returnDiv .= "</ul>" . PHP_EOL;
-
-        $returnDiv .= "<div id=\"test-swipe-1\" class=\"col s12 slideDetails\">" . PHP_EOL;
-        $returnDiv .= "<ul class=\"collapsible popout\" data-collapsible=\"accordion\">" . PHP_EOL;
-
-        foreach ($arrayRepos as $key => $arrayOneRepos) {
-
-            $returnDiv .= "<li>";
-            $returnDiv .= "<div class=\"collapsible-header hoverable blue white-text\">";
-            $returnDiv .= "<div>";
-            $returnDiv .= "<h5><i class=\"material-icons\">folder</i>" . $arrayOneRepos->name . "</h5>" . PHP_EOL;
-            $returnDiv .= "</div>" . PHP_EOL;
-            $returnDiv .= "<span class=\"lastCommit\">Last updated : " . $arrayOneRepos->pushed_at . "</span>" . PHP_EOL;
-            $returnDiv .= "</div>" . PHP_EOL;
-            $returnDiv .= "<div class=\"collapsible-body\">" . PHP_EOL;
-            $returnDiv .= "<div class=\"center\">" . PHP_EOL;
-            $returnDiv .= "Lien du dépôt : <a href='" . $arrayOneRepos->html_url . "'>" . $arrayOneRepos->html_url . "</a>" . PHP_EOL;
-            $returnDiv .= "</div>" . PHP_EOL;
-            $returnDiv .= "</div>" . PHP_EOL;
-            $returnDiv .= "<div class=\"collapsible-footer\">" . PHP_EOL;
-            $returnDiv .= "<div class=\"chip red white-text\">" . PHP_EOL;
-            $returnDiv .= $arrayOneRepos->language . PHP_EOL;
-            $returnDiv .= "</div>" . PHP_EOL;
-            $returnDiv .= "<span>" . $arrayOneRepos->forks . " Forks</span>" . PHP_EOL;
-            $returnDiv .= "</div>" . PHP_EOL;
-            $returnDiv .= "</li>" . PHP_EOL;
-        }
-
-        $returnDiv .= "</ul>" . PHP_EOL;
-        $returnDiv .= "</div>" . PHP_EOL;
-
-
-        $returnDiv .= "<div id=\"test-swipe-2\" class=\"col s12 slideDetails\">" . PHP_EOL;
-        $returnDiv .= "<ul class=\"collapsible popout\" data-collapsible=\"accordion\">" . PHP_EOL;
-
-        foreach ($arrayGists as $key => $arrayOneGists) {
-
-            $returnDiv .= "<li>" . PHP_EOL;
-            $returnDiv .= "<div class=\"collapsible-header hoverable green white-text\">" . PHP_EOL;
-            $returnDiv .= "<div>" . PHP_EOL;
-            $returnDiv .= "<h5><i class=\"material-icons\">description</i>" . $arrayOneGists->name . "</h5>" . PHP_EOL;
-            $returnDiv .= "</div>" . PHP_EOL;
-            $returnDiv .= "<span class=\"lastCommit\">Last updated : " . $arrayOneGists->pushed_at . "</span>" . PHP_EOL;
-            $returnDiv .= "</div>" . PHP_EOL;
-            $returnDiv .= "<div class=\"collapsible-body\">" . PHP_EOL;
-            $returnDiv .= "<div class=\"center\">" . PHP_EOL;
-            $returnDiv .= "Lien du gist : <a href='" . $arrayOneGists->html_url . "'>" . $arrayOneGists->html_url . "</a>" . PHP_EOL;
-            $returnDiv .= "</div>" . PHP_EOL;
-            $returnDiv .= "</div>" . PHP_EOL;
-            $returnDiv .= "<div class=\"collapsible-footer\">" . PHP_EOL;
-            $returnDiv .= "<div class=\"chip red white-text\">" . PHP_EOL;
-            $returnDiv .= "@language" . PHP_EOL;
-            $returnDiv .= "</div>" . PHP_EOL;
-            $returnDiv .= "<span>" . $arrayOneGists->forks . "</span>" . PHP_EOL;
-            $returnDiv .= "</div>" . PHP_EOL;
-            $returnDiv .= "</li>" . PHP_EOL;
-        }
-
-
-        $returnDiv .= "</ul>" . PHP_EOL;
-
-        $returnDiv .= "</div>" . PHP_EOL;
-        $returnDiv .= "</div>" . PHP_EOL;
-        $returnDiv .= "</div>" . PHP_EOL;
-        //$returnDiv .= "";
-
-        return $returnDiv;
     }
 }
 
