@@ -15,6 +15,8 @@ class Request
 
     public $arguments;
 
+    const TOKEN = "ce8443c91c2bf78922f82ceb2a1ec2fbfaef3ee9";
+
 
     /**
      * Request constructor.
@@ -31,7 +33,7 @@ class Request
     public function snippetsLite($affichExtend)
     {
         $returnDiv = "";
-        $token = '424ad90bc9ee8b0c4c928f73b0dc2b670f8e7bac'; // Banban
+        $token = self::TOKEN;
         $arrayFinal = "";
 
         $url = "https://api.github.com/users/$this->user";
@@ -163,7 +165,7 @@ class Request
     public function snippetsFat()
     {
         $returnDiv = "";
-        $token = '424ad90bc9ee8b0c4c928f73b0dc2b670f8e7bac'; // Banban
+        $token = self::TOKEN;
 
 
         $url = "https://api.github.com/users/$this->user";
