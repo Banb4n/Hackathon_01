@@ -79,7 +79,6 @@ $serveur = str_replace('index.php','',$_SERVER['SCRIPT_URI']);
                 <label for="displayList">Afficher la liste des dépôts</label>
             </div>
         </div>
-
         <div class="row">
             <div class="col s3 offset-s9">
                 <button class="btn waves-effect waves-light" type="submit">Submit

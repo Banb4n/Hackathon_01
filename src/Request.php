@@ -15,6 +15,7 @@ class Request
 
     public $arguments;
 
+
     /**
      * Request constructor.
      * @param $user
@@ -30,7 +31,7 @@ class Request
     public function snippetsLite()
     {
         $returnDiv = "";
-        $token = 'dbed3390d2a22f82d38e98cf7cb0cedc67fdb755'; // Banban
+        $token = 'f908f543dd08640c4ff072d34681afc3f8801dc2'; // Banban
 
         $url = "https://api.github.com/users/$this->user";
         $user = curl_init();
@@ -118,21 +119,21 @@ class Request
         }
         $returnDiv .= "<div class=\"appFollow\">" . PHP_EOL;
         if (in_array("followers", $this->arguments['user'])) {
-            $returnDiv .= "<span class=\"followers chip\">Followers : " . $arrayFinal['user']['followers'] . "</span>" . PHP_EOL;
+            $returnDiv .= "<span class=\"followers chip amber white-text\">Followers : " . $arrayFinal['user']['followers'] . "</span>" . PHP_EOL;
         }
         $returnDiv .= "<br>" . PHP_EOL;
         if (in_array("following", $this->arguments['user'])) {
-            $returnDiv .= "<span class=\"following chip\">Following : " . $arrayFinal['user']['following'] . "</span>" . PHP_EOL;
+            $returnDiv .= "<span class=\"following chip amber white-text\">Following : " . $arrayFinal['user']['following'] . "</span>" . PHP_EOL;
         }
         $returnDiv .= "</div></div></div>" . PHP_EOL;
         $returnDiv .= "<div class=\"divider\"></div>" . PHP_EOL;
         $returnDiv .= "<div class=\"appRepos\">" . PHP_EOL;
         $returnDiv .= "<div class=\"countCreate\">" . PHP_EOL;
         if (in_array("public_repos", $this->arguments['user'])) {
-            $returnDiv .= "<p class=\"countRepos chip\">Depots : " . $arrayFinal['user']['public_repos'] . "</p>" . PHP_EOL;
+            $returnDiv .= "<p class=\"countRepos chip blue white-text\">Depots : " . $arrayFinal['user']['public_repos'] . "</p>" . PHP_EOL;
         }
         if (in_array("public_gists", $this->arguments['user'])) {
-            $returnDiv .= "<p class=\"countGists chip\">Gists : " . $arrayFinal['user']['public_gists'] . "</p>" . PHP_EOL;
+            $returnDiv .= "<p class=\"countGists chip green white-text\">Gists : " . $arrayFinal['user']['public_gists'] . "</p>" . PHP_EOL;
         }
         $returnDiv .= "</div>" . PHP_EOL;
         $returnDiv .= "<div class=\"divider\"></div>" . PHP_EOL;
@@ -141,15 +142,14 @@ class Request
             $returnDiv .= "<span>Les derniers depos :</span>" . PHP_EOL;
             $returnDiv .= "<ul>" . PHP_EOL;
             foreach ($arrayFinal['repos'] as $key => $arrayOneRepos) {
-                $returnDiv .= "<li>" . $arrayOneRepos->name . "</li>" . PHP_EOL;
+                $returnDiv .= "<li><i class=\"material-icons blue-text\">folder</i> " . $arrayOneRepos->name . "</li>" . PHP_EOL;
             }
             $returnDiv .= "</ul>" . PHP_EOL;
         }
         $returnDiv .= "</div>" . PHP_EOL;
         $returnDiv .= "</div>" . PHP_EOL;
-        $returnDiv .= "<div class=\"divider\"></div>" . PHP_EOL;
         $returnDiv .= "<div class=\"appFooter center\">" . PHP_EOL;
-        $returnDiv .= "<a class=\"waves-effect waves-light btn modal-trigger\" href=\"#modal1\">Click here for more details</a>" . PHP_EOL;
+        $returnDiv .= "<a class=\"waves-effect waves-light btn modal-trigger amber white-text\" href=\"#modal1\">Click here for more details</a>" . PHP_EOL;
         $returnDiv .= "</div>" . PHP_EOL;
         $returnDiv .= "</div>" . PHP_EOL;
 
@@ -160,7 +160,7 @@ class Request
     public function snippetsFat()
     {
         $returnDiv = "";
-        $token = 'dbed3390d2a22f82d38e98cf7cb0cedc67fdb755'; // Banban
+        $token = 'f908f543dd08640c4ff072d34681afc3f8801dc2'; // Banban
         $url = "https://api.github.com/users/$this->user";
         $user = curl_init();
         curl_setopt($user, CURLOPT_URL, $url);
