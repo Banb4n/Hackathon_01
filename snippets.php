@@ -1,3 +1,8 @@
+<?php
+ini_set('display_errors', 0);
+ini_set('display_startup_errors', 0);
+error_reporting(0);
+?>
 <!doctype html>
 <html lang="fr">
 <head>
@@ -18,7 +23,7 @@
 
 <?php
 
-require 'vendor/autoload.php';
+require 'src/Request.php';
 
 use FJA\Request;
 
