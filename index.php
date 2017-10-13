@@ -1,4 +1,8 @@
-<?php  require 'src/rooter.php';  ?>
+<?php
+ini_set('display_errors', 0);
+ini_set('display_startup_errors', 0);
+error_reporting(0);
+require 'src/rooter.php';  ?>
 
 <!doctype html>
 <html lang="fr">
@@ -29,5 +33,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
 <!-- Import main.js -->
 <script src="public/assets/js/main.js"></script>
+<script src="public/assets/js/copyClipBoard.js"></script>
 </body>
 </html>
+
