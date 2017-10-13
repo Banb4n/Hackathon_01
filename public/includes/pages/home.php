@@ -4,8 +4,8 @@ require 'vendor/autoload.php';
 
 use FJA\Request;
 
-$arguments['user'] = ["avatar_url", "name", "followers", "following", "public_repos", "public_gists"];
-$arguments['repos'] = ["limit" => "F-3", "hide"];
+$arguments['user'] = ["avatar_url", "login", "followers", "following", "public_repos", "public_gists"];
+$arguments['repos'] = ["limit" => "F-3", "show"];
 $arguments['gists'] = ["limit" => "D-3", "show"];
 
 $lol = new Request("Banb4n", serialize($arguments));
@@ -47,7 +47,7 @@ echo $lol->snippetsLite();
                     </div>
                     <div class="collapsible-body">
                         <div class="center">
-                            <span>Liens du dépôt : @html_url</span>
+                            <a href="@html_url" class="" >Liens du dépôt : @html_url</a>
                         </div>
                     </div>
                     <div class="collapsible-footer">
@@ -82,6 +82,7 @@ echo $lol->snippetsLite();
                         <span>@forks Forks</span>
                     </div>
                 </li>
+
 
             </ul>
         </div>
