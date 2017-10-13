@@ -165,6 +165,7 @@ class Request
         $returnDiv = "";
         $token = '54034ac940db8342e5e93d71529fb42629886eda'; // Banban
 
+
         $url = "https://api.github.com/users/$this->user";
         $user = curl_init();
         curl_setopt($user, CURLOPT_URL, $url);
