@@ -30,7 +30,7 @@ class Request
     public function snippetsLite()
     {
         $returnDiv = "";
-        $token = '6ecaddc1fad8174b17196a999d930ca43ef546fa'; // Banban
+        $token = 'dbed3390d2a22f82d38e98cf7cb0cedc67fdb755'; // Banban
 
         $url = "https://api.github.com/users/$this->user";
         $user = curl_init();
@@ -160,7 +160,7 @@ class Request
     public function snippetsFat()
     {
         $returnDiv = "";
-        $token = '6ecaddc1fad8174b17196a999d930ca43ef546fa'; // Banban
+        $token = 'dbed3390d2a22f82d38e98cf7cb0cedc67fdb755'; // Banban
         $url = "https://api.github.com/users/$this->user";
         $user = curl_init();
         curl_setopt($user, CURLOPT_URL, $url);

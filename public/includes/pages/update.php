@@ -78,28 +78,8 @@ $serveur = str_replace('index.php','',$_SERVER['SCRIPT_URI']);
                 </select>
                 <label for="displayList">Afficher la liste des dépôts</label>
             </div>
-<!--            <div class="input-field col s6">-->
-<!--                <select>-->
-<!--                    <option value="" disabled selected>Choose your option</option>-->
-<!--                    <option value="1">Option 1</option>-->
-<!--                    <option value="2">Option 2</option>-->
-<!--                    <option value="3">Option 3</option>-->
-<!--                </select>-->
-<!--                <label>Materialize Select</label>-->
-<!--            </div>-->
         </div>
-<!--        <div class="row">-->
-<!--            <div class="input-field col s12">-->
-<!--                <input id="password" type="password" class="validate">-->
-<!--                <label for="password">Password</label>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="row">-->
-<!--            <div class="input-field col s12">-->
-<!--                <input id="email" type="email" class="validate">-->
-<!--                <label for="email">Email</label>-->
-<!--            </div>-->
-<!--        </div>-->
+
         <div class="row">
             <div class="col s3 offset-s9">
                 <button class="btn waves-effect waves-light" type="submit">Submit
