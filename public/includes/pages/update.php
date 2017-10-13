@@ -7,7 +7,7 @@ if (isset($_POST)) {
     array_push($arguments['repos'], $_POST['repos'][0]);
     $serveur = explode("index.php", $_SERVER['HTTP_REFERER']);
     $extention = (!empty($_POST['extends']) ? "&extends" : "");
-    $returnDiv = "&#60;div&#62;&#60;object  style=\"width: 380px;height: 550px;\" data='" . $serveur[0] . "snippets.php?user=" . $_POST['userName'] . "&var=" . serialize($arguments) . $extention . "' type=\"text/html\"&#62;&#60;/object&#62; &#60;/div&#62;";
+    $returnDiv = "&#60;div&#62;&#60;object  style=\"width: 380px;height: 600px;\" data='" . $serveur[0] . "snippets.php?user=" . $_POST['userName'] . "&var=" . serialize($arguments) . $extention . "' type=\"text/html\"&#62;&#60;/object&#62; &#60;/div&#62;";
     unlink("cache.html");
     file_put_contents("cache.html", $returnDiv);
     chmod("cache.html", 0777);
