@@ -4,7 +4,7 @@ require 'vendor/autoload.php';
 
 use FJA\Request;
 
-$arguments['user'] = ["name", "followers", "following", "public_repos", "public_gists"];
+$arguments['user'] = ["avatar_url", "name", "followers", "following", "public_repos", "public_gists"];
 $arguments['repos'] = ["limit" => "F-3", "hide"];
 $arguments['gists'] = ["limit" => "D-3", "show"];
 
