@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<main class="containerHome" style="background-image: url('public/images/alnnnnn.png');" id="">
+<main class="containerHome"  id="">
 
 <?php
 
@@ -25,7 +25,7 @@ use FJA\Request;
 $user = new Request($_GET['user'], $_GET['var']);
 
 echo $user->snippetsLite();
-echo $user->snippetsLite();
+echo $user->snippetsFat();
 
 
 ?>
