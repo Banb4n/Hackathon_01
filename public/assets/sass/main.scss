@@ -4,9 +4,6 @@ $secondChoiceColorJs: lighblue;
 .containerHome {
   max-width: 100vw;
   height: 100vh;
-  background-color: dimgrey;
-  background-image: url("../images/alnnnnn.png");
-
 }
 
 .card {
@@ -52,8 +49,14 @@ $secondChoiceColorJs: lighblue;
     }
     .deposApp {
       padding: 10px 25px;
+      span {
+        font-size: 1.3em;
+        font-weight: bold;
+      }
       ul {
-        text-align: center;
+        text-align: left;
+        padding-left: 25px;
+        font-size: 1.2em;
       }
     }
 }
@@ -63,6 +66,9 @@ $secondChoiceColorJs: lighblue;
   padding: 20px 0 5px 10px;
   display: flex;
   justify-content: space-between;
+  .following {
+    text-shadow: 0 2px 2px black;
+  }
 }
 
 .modal.bottom-sheet {
