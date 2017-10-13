@@ -23,7 +23,7 @@ error_reporting(0);
 
 <?php
 
-require 'vendor/autoload.php';
+require 'src/Request.php';
 
 use FJA\Request;
 
