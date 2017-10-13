@@ -11,6 +11,10 @@ $arguments['gists'] = ["limit" => "D-3", "show"];
 $lol = new Request("Banb4n", serialize($arguments));
 
 echo $lol->snippetsLite();
+
+
+
+
 ?>
 
 <?php /*include "snippets.php?user=Banb4n&var=a:2:{s:8:"userName";s:6:"Banb4n";s:4:"user";a:6:{i:0;s:4:"name";i:1;s:10:"avatar_url";i:2;s:9:"followers";i:3;s:9:"following";i:4;s:12:"public_repos";i:5;s:12:"public_gists";}}"; */?>
@@ -23,7 +27,12 @@ echo $lol->snippetsLite();
     </a>
 </div>
 
-<!-- Modal for view more details -->
+<?php
+echo $lol->snippetsFat();
+
+?>
+
+<!--<!-- Modal for view more details
 <div id="modal1" class="modal bottom-sheet">
     <div class="modal-header">
         <h4>Détails du compte github de @userName</h4>
@@ -34,10 +43,10 @@ echo $lol->snippetsLite();
             <li class="tab"><a href="#test-swipe-1">Les dépôts : </a></li>
             <li class="tab"><a href="#test-swipe-2">Les gists : </a></li>
         </ul>
-<!--    depot     -->
+<!--    depot
         <div id="test-swipe-1" class="col s12 slideDetails">
             <ul class="collapsible popout" data-collapsible="accordion">
-                <!--  Tu boucle sur celle la  -->
+                <!--  Tu boucle sur celle la
                 <li>
                     <div class="collapsible-header hoverable blue white-text">
                         <div>
@@ -60,7 +69,7 @@ echo $lol->snippetsLite();
 
             </ul>
         </div>
-<!--   Gist     -->
+<!--   Gist
         <div id="test-swipe-2" class="col s12 slideDetails">
             <ul class="collapsible popout" data-collapsible="accordion">
                 <li>
@@ -86,4 +95,4 @@ echo $lol->snippetsLite();
             </ul>
         </div>
     </div>
-</div>
+</div>-->
