@@ -40,7 +40,7 @@ if (isset($_POST)) {
                 <form class="container" action="#" method="post">
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="userName" name="userName" type="text" class="validate" required>
+                            <input id="userName" name="userName" type="text" class="validate" required />
                             <label for="userName">@userName</label>
                         </div>
                     </div>
