@@ -29,23 +29,8 @@ class Request
 
     public function snippetsLite()
     {
-
-
-
-
-
-// Délais d'expiration
-$expires = time() - 5*60;
-
-$file = "cache/$this->user.txt";
-
-// On ouvre le fichier
-if (file_exists($file)) {
-    if(filectime($file) < $expires){
-
-
         $returnDiv = "";
-        $token = '16e16506fe46c55ede8a658663f7eebbd2fa595f'; // Banban
+        $token = 'd33aa1522c4da5f45438d82d196fbf2029c02146 '; // token user
 
         $url = "https://api.github.com/users/$this->user";
         $user = curl_init();
@@ -122,24 +107,45 @@ if (file_exists($file)) {
         }
 
 
+  /*
 
+// Délais d'expiration
+$expires = time() - 2*60;
 
-        $file = fopen($file, 'w+');
-        chmod($file,'0777');
-        unlink($file);
-        fwrite($file, serialize($arrayFinal));
-        fclose($file);
-
-
-    }
-    else {
-        $file = fopen($file, 'w+');
-        chmod($file,'0777');
-        $content = file_get_contents($file);
-        $arrayFinal = unserialize($content);
-        fclose($file);
-    }
+$fichier = $arrayFinal['user']['login'] . ".txt";
+// On ouvre le fichier
+if (file_exists()) {
+    unlink('cache.txt');
 }
+$file = fopen('cache.txt', 'w+');
+// On se donne les droits sur cache.txt
+chmod('cache.txt','0777');
+
+
+// On declare un test
+$arraydata = ['ff', 'ff', 'ff'];
+
+
+// On écrit dans le fichier
+fwrite($file, serialize($arraydata));
+fclose($file);
+
+//  Si le délais est dépassé on echo lol
+if($expires > filectime($file)){
+
+}*/
+
+//il faut trouver un moyen de vérifier que le fichier existe sinon on le fait créer d'une autre façon
+//ce que je veux : stocker dans un fichier
+
+
+
+
+
+
+
+
+
         $returnDiv .= "<div class=\"app z-depth-4\">" . PHP_EOL;
         $returnDiv .= "<div class=\"appHeader\">" . PHP_EOL;
         if (in_array("avatar_url", $this->arguments['user'])) {
@@ -193,7 +199,7 @@ if (file_exists($file)) {
     public function snippetsFat()
     {
         $returnDiv = "";
-        $token = '16e16506fe46c55ede8a658663f7eebbd2fa595f'; // Banban
+        $token = 'd33aa1522c4da5f45438d82d196fbf2029c02146 '; // Banban
         $url = "https://api.github.com/users/$this->user";
         $user = curl_init();
         curl_setopt($user, CURLOPT_URL, $url);
