@@ -34,6 +34,7 @@ echo $lol->snippetsLite();
             <li class="tab"><a href="#test-swipe-1">repos</a></li>
             <li class="tab"><a href="#test-swipe-2">gists</a></li>
         </ul>
+<!--    depot     -->
         <div id="test-swipe-1" class="col s12 slideDetails">
             <ul class="collapsible popout" data-collapsible="accordion">
                 <li>
@@ -50,6 +51,7 @@ echo $lol->snippetsLite();
                 </li>
             </ul>
         </div>
+<!--   Gist     -->
         <div id="test-swipe-2" class="col s12 slideDetails">
             <ul class="collapsible popout" data-collapsible="accordion">
                 <li>
