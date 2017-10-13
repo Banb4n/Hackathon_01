@@ -78,16 +78,18 @@ $serveur = str_replace('index.php','',$_SERVER['SCRIPT_URI']);
                 </select>
                 <label for="displayList">Afficher la liste des dépôts</label>
             </div>
-<!--            <div class="input-field col s6">-->
-<!--                <select>-->
-<!--                    <option value="" disabled selected>Choose your option</option>-->
-<!--                    <option value="1">Option 1</option>-->
-<!--                    <option value="2">Option 2</option>-->
-<!--                    <option value="3">Option 3</option>-->
-<!--                </select>-->
-<!--                <label>Materialize Select</label>-->
-<!--            </div>-->
+            <p class="col s4 offset-s1">
+                <input type="checkbox" id="extends" checked="checked" name="extends" value="true" />
+                <label for="extends">Génèrez le code HTML : </label>
+            </p>
         </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <textarea id="textarea1" class="materialize-textarea" readonly></textarea>
+                <label for="textarea1">Code HTML à intégrer</label>
+            </div>
+        </div>
+
 <!--        <div class="row">-->
 <!--            <div class="input-field col s12">-->
 <!--                <input id="password" type="password" class="validate">-->

@@ -1,3 +1,5 @@
+var pattern = GeoPattern.generate();
+
 $(document).ready(function(){
     $('ul.tabs').tabs();
     $('.modal').modal({
@@ -5,4 +7,6 @@ $(document).ready(function(){
     });
     $('.collapsible').collapsible();
     $('select').material_select();
+    $('#geopattern').css('background-image', pattern.toDataUrl());
 });
+
