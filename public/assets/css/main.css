@@ -11,7 +11,7 @@
   top: 50vh;
   transform: translatey(-50%);
   padding: 20px 10px;
-  background: rgba(255, 255, 255, 0.7); }
+  background: rgba(255, 255, 255, 0.8); }
 
 .app {
   width: 350px;
@@ -55,6 +55,8 @@
   padding: 50px 15px;
   background-color: lightgrey; }
 
+.collapsible li {
+  margin: 20px 0; }
 .collapsible .collapsible-header {
   display: flex;
   justify-content: space-between; }

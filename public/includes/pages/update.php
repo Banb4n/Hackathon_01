@@ -12,7 +12,7 @@ if(isset($_POST)) {
 
      print_r($arguments);
     echo "<br />";
-    echo "Array ( [user] => Array ( [0] => avatar_url [1] => name [2] => followers [3] => following [4] => public_repos [5] => public_gists ) [repos] => Array ( [limit] => F-3 [0] => show ) [gists] => Array ( [limit] => D-3 [0] => show ) ) ";
+    echo "Array ( [user] => Array ( [0] => avatar_url [1] => login [2] => followers [3] => following [4] => public_repos [5] => public_gists ) [repos] => Array ( [limit] => F-3 [0] => show ) [gists] => Array ( [limit] => D-3 [0] => show ) ) ";
 }
 
 ?>
@@ -28,7 +28,7 @@ if(isset($_POST)) {
         <div class="row">
             <div class="col s4">
                 <p>
-                    <input type="checkbox" id="displayUserName" checked="checked" name="user[]" value="name" />
+                    <input type="checkbox" id="displayUserName" checked="checked" name="user[]" value="login" />
                     <label for="displayUserName">Afficher le userName : </label>
                 </p>
                 <p>

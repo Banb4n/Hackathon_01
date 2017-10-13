@@ -29,12 +29,12 @@ class Request
 
     public function snippetsLite()
     {
-        $token = "0e7062021bbb778ddf88014e727085c48e047a1c"; //token fantasia
         $returnDiv = "";
+        $token = 'yourToken'; // Banban
         $prenom = $this->user;
-        $url = 'https://api.github.com/users/Cerynna';
+        $url = 'https://api.github.com/users/Banb4n';
         $user = curl_init();
-        curl_setopt($user, CURLOPT_URL, 'https://api.github.com/users/Cerynna');
+        curl_setopt($user, CURLOPT_URL, 'https://api.github.com/users/Banb4n');
         curl_setopt($user, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($user, CURLOPT_HEADER, 0);
         curl_setopt($user, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 6.1; fr; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13');
@@ -113,8 +113,8 @@ class Request
             $returnDiv .= "<img src=\"" . $arrayFinal['user']['avatar_url'] . "\" alt=\"imgProfil\" class=\"circle\" width=\"120px\" height=\"120px\">" . PHP_EOL;
         }
         $returnDiv .= "<div class=\"infos\">" . PHP_EOL;
-        if (in_array("name", $this->arguments['user'])) {
-            $returnDiv .= "<span class=\"userName\">" . $arrayFinal['user']['name'] . "</span>" . PHP_EOL;
+        if (in_array("login", $this->arguments['user'])) {
+            $returnDiv .= "<span class=\"userName\">@" . $arrayFinal['user']['login'] . "</span>" . PHP_EOL;
         }
         $returnDiv .= "<div class=\"appFollow\">" . PHP_EOL;
         if (in_array("followers", $this->arguments['user'])) {
