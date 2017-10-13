@@ -1,4 +1,6 @@
-$(document).ready(function(){
+
+
+$(document).ready(function () {
     // Init tabs
     $('ul.tabs').tabs();
     // Init modals and set close when clickOut

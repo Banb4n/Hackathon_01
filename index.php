@@ -8,6 +8,7 @@ error_reporting(0);
 
 <?php  require 'src/rooter.php';  ?>
 
+
 <!doctype html>
 <html lang="fr">
 <head>
