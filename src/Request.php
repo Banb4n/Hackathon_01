@@ -28,10 +28,10 @@ class Request
     }
 
 
-    public function snippetsLite()
+    public function snippetsLite($affichExtend)
     {
         $returnDiv = "";
-        $token = 'f908f543dd08640c4ff072d34681afc3f8801dc2'; // Banban
+        $token = '118783e6a7678c70569d908153f70f283964902b'; // Banban
 
         $url = "https://api.github.com/users/$this->user";
         $user = curl_init();
@@ -148,9 +148,15 @@ class Request
         }
         $returnDiv .= "</div>" . PHP_EOL;
         $returnDiv .= "</div>" . PHP_EOL;
-        $returnDiv .= "<div class=\"appFooter center\">" . PHP_EOL;
-        $returnDiv .= "<a class=\"waves-effect waves-light btn modal-trigger amber white-text\" href=\"#modal1\">Click here for more details</a>" . PHP_EOL;
-        $returnDiv .= "</div>" . PHP_EOL;
+
+        if ($affichExtend == TRUE) {
+            $returnDiv .= "<div class=\"appFooter center\">" . PHP_EOL;
+            $returnDiv .= "<a class=\"waves-effect waves-light btn modal-trigger amber white-text\" href=\"#modal1\">Click here for more details</a>" . PHP_EOL;
+            $returnDiv .= "</div>" . PHP_EOL;
+        }
+
+
+
         $returnDiv .= "</div>" . PHP_EOL;
 
         //$returnDiv .= "";
@@ -160,7 +166,7 @@ class Request
     public function snippetsFat()
     {
         $returnDiv = "";
-        $token = 'f908f543dd08640c4ff072d34681afc3f8801dc2'; // Banban
+        $token = '118783e6a7678c70569d908153f70f283964902b'; // Banban
         $url = "https://api.github.com/users/$this->user";
         $user = curl_init();
         curl_setopt($user, CURLOPT_URL, $url);
