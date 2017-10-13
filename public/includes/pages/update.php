@@ -70,11 +70,12 @@ if (isset($_POST)) {
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <textarea id="textarea1" class="materialize-textarea" readonly><?php
+                <textarea id="to-copy" spellcheck="false" class="materialize-textarea" readonly>
+                    <?php
                     if (!empty($_POST)) {
                         $extention = (!empty($_POST['extends'])?"&extends" :"" ) ;
 
-                        echo "&#60;div&#62;&#60;object  style=\"width: 380px;height: 500px;\" data='" . $serveur[0] . "snippets.php?user=" . $_POST['userName'] . "&var=" . serialize($arguments) . $extention . "' type=\"text/html\"&#62;&#60;/object&#62; &#60;/div&#62;";
+                        echo "&#60;div&#62;&#60;object style=\"width: 380px;height: 500px;\" data='" . $serveur[0] . "snippets.php?user=" . $_POST['userName'] . "&var=" . serialize($arguments) . $extention . "' type=\"text/html\"&#62;&#60;/object&#62; &#60;/div&#62;";
 
                         $result = array_map("unserialize", array_unique(array_map("serialize", $result)));
                         $file = fopen("../arrayDir.php", "r+");
@@ -84,9 +85,9 @@ if (isset($_POST)) {
 
                     }
                     ?>
-
                 </textarea>
-                <label for="textarea1">Code HTML à intégrer</label>
+                <a id="copy" class="btn" title="Copied HTML code"><i class="large material-icons">content_copy</i></a>
+                <label for="to-copy">Code HTML à intégrer</label>
             </div>
         </div>
 
@@ -118,3 +119,5 @@ if (isset($_POST)) {
         <i class="large material-icons">home</i>
     </a>
 </div>
+
+
