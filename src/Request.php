@@ -49,20 +49,18 @@ class Request
             'auth' => ['Cerynna', 'jm147gm147']]);
         $gists = $resGists->getBody();
         $arrayGists = json_decode($gists);
-
         foreach ($arrayUser as $key => $value) {
             if (in_array($key, $this->arguments['user'])) {
                 $arrayFinal['user'][$key] = $value;
             }
         }
-
         $limitRepos = $this->arguments['repos']['limit'];
 
-        foreach ($tableRepos as $key => $part) {
-            $sort[$key] = strtotime($part['pushed_at']);
+        foreach ($arrayRepos as $key => $array) {
+            $sort[$key] = strtotime($array->pushed_at);
+            //$returnDiv .= $array->pushed_at . PHP_EOL;
         }
-        array_multisort($sort, SORT_DESC, $tableRepos);
-
+        array_multisort($sort, SORT_DESC, $arrayRepos);
 
         $limiterRepos = explode("-", $limitRepos);
         $nbRepos = $arrayUser->public_repos - 1;
@@ -77,7 +75,6 @@ class Request
             }
 
         }
-
         $limitGists = $this->arguments['gists']['limit'];
         $limiterGists = explode("-", $limitGists);
         $nbGists = $arrayUser->public_repos - 1;
@@ -90,17 +87,9 @@ class Request
             for ($i = $nbGists; $i > ($nbGists - $limiterGists[1]); $i--) {
                 $arrayFinal['gists'][$i] = $arrayGists[$i];
             }
-
         }
-        /* ARRAY FINAL */
-
-
-
         $returnDiv .= "<div class=\"app z-depth-4\">" . PHP_EOL;
         $returnDiv .= "<div class=\"appHeader\">" . PHP_EOL;
-
-
-
         if (in_array("avatar_url", $this->arguments['user'])) {
             $returnDiv .= "<img src=\"" . $arrayFinal['user']['avatar_url'] . "\" alt=\"imgProfil\" class=\"circle\" width=\"120px\" height=\"120px\">" . PHP_EOL;
         }
@@ -132,14 +121,9 @@ class Request
         if (in_array("show", $this->arguments['repos'])) {
             $returnDiv .= "<span>Les derniers depos :</span>" . PHP_EOL;
             $returnDiv .= "<ul>" . PHP_EOL;
-
             foreach ($arrayFinal['repos'] as $key => $arrayOneRepos) {
-
                 $returnDiv .= "<li>" . $arrayOneRepos->name . "</li>" . PHP_EOL;
-                //$returnDiv .= "<li>lol</li>" . PHP_EOL;
             }
-
-
             $returnDiv .= "</ul>" . PHP_EOL;
         }
         $returnDiv .= "</div>" . PHP_EOL;
