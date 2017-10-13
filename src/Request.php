@@ -31,7 +31,7 @@ class Request
     public function snippetsLite($affichExtend)
     {
         $returnDiv = "";
-        $token = '1571e088efd4dcf923beb3680c990f41a20708ff'; // Banban
+        $token = '3c1cd93b123d714fc732e9ad11999cd2c3ac815d'; // Banban
         $arrayFinal = "";
 
         $url = "https://api.github.com/users/$this->user";
@@ -163,7 +163,7 @@ class Request
     public function snippetsFat()
     {
         $returnDiv = "";
-        $token = '1571e088efd4dcf923beb3680c990f41a20708ff'; // Banban
+        $token = '3c1cd93b123d714fc732e9ad11999cd2c3ac815d'; // Banban
 
 
         $url = "https://api.github.com/users/$this->user";
@@ -262,7 +262,7 @@ class Request
             $returnDiv .= "</div>" . PHP_EOL;
             $returnDiv .= "<div class=\"collapsible-body\">" . PHP_EOL;
             $returnDiv .= "<div class=\"center\">" . PHP_EOL;
-            $returnDiv .= "Lien du dépôt : <a href='" . $arrayOneRepos->html_url . "'>" . $arrayOneRepos->html_url . "</a>" . PHP_EOL;
+            $returnDiv .= "Lien du dépôt : <a href='" . $arrayOneRepos->html_url . "' target='_blank'>" . $arrayOneRepos->html_url . "</a>" . PHP_EOL;
             $returnDiv .= "</div>" . PHP_EOL;
             $returnDiv .= "</div>" . PHP_EOL;
             $returnDiv .= "<div class=\"collapsible-footer\">" . PHP_EOL;
@@ -305,7 +305,7 @@ class Request
             $returnDiv .= "</div>" . PHP_EOL;
             $returnDiv .= "<div class=\"collapsible-body\">" . PHP_EOL;
             $returnDiv .= "<div class=\"center\">" . PHP_EOL;
-            $returnDiv .= "Lien du gist : <a href='" . $arrayOneGists->html_url . "'>" . $arrayOneGists->html_url . "</a>" . PHP_EOL;
+            $returnDiv .= "Lien du gist : <a href='" . $arrayOneGists->html_url . "' target='_blank'>" . $arrayOneGists->html_url . "</a>" . PHP_EOL;
             $returnDiv .= "</div>" . PHP_EOL;
             $returnDiv .= "</div>" . PHP_EOL;
             $returnDiv .= "<div class=\"collapsible-footer\">" . PHP_EOL;
