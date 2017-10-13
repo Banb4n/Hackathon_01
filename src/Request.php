@@ -30,11 +30,11 @@ class Request
     public function snippetsLite()
     {
         $returnDiv = "";
-        $token = '249d7e221e22591213324231fdbaeefa7ecb453c'; // Banban
-        $prenom = $this->user;
-        $url = 'https://api.github.com/users/Banb4n';
+        $token = '74dc724df6b0ded9220e326701c5d6bde8a95677'; // Banban
+
+        $url = "https://api.github.com/users/$this->user";
         $user = curl_init();
-        curl_setopt($user, CURLOPT_URL, 'https://api.github.com/users/Banb4n');
+        curl_setopt($user, CURLOPT_URL, $url);
         curl_setopt($user, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($user, CURLOPT_HEADER, 0);
         curl_setopt($user, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 6.1; fr; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13');
@@ -157,15 +157,13 @@ class Request
         return $returnDiv;
     }
 
-
     public function snippetsFat()
     {
         $returnDiv = "";
-        $token = '249d7e221e22591213324231fdbaeefa7ecb453c'; // Banban
-        $prenom = $this->user;
-        $url = 'https://api.github.com/users/Cerynna';
+        $token = '74dc724df6b0ded9220e326701c5d6bde8a95677'; // Banban
+        $url = "https://api.github.com/users/$this->user";
         $user = curl_init();
-        curl_setopt($user, CURLOPT_URL, 'https://api.github.com/users/Cerynna');
+        curl_setopt($user, CURLOPT_URL, $url);
         curl_setopt($user, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($user, CURLOPT_HEADER, 0);
         curl_setopt($user, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 6.1; fr; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13');
@@ -208,11 +206,12 @@ class Request
         $arrayGists = json_decode($dataGists);
 
         foreach ($arrayGists as $key => $array) {
-            $sort[$key] = strtotime($array->updated_at);
-            //$returnDiv .= $array->pushed_at . PHP_EOL;
+            //var_dump($array);
+            $sort[$key] = strtotime($array->created_at);
+            //$returnDiv .= $array->created_at . PHP_EOL;
         }
         array_multisort($sort, SORT_DESC, $arrayGists);
-
+//var_dump($arrayGists);
 
         $limitRepos = $this->arguments['repos']['limit'];
 
@@ -266,6 +265,7 @@ class Request
             $returnDiv .= "<div>";
             $returnDiv .= "<h5><i class=\"material-icons\">folder</i>" . $arrayOneRepos->name . "</h5>" . PHP_EOL;
             $returnDiv .= "</div>" . PHP_EOL;
+
             $returnDiv .= "<span class=\"lastCommit\">Last updated : " . $arrayOneRepos->pushed_at . "</span>" . PHP_EOL;
             $returnDiv .= "</div>" . PHP_EOL;
             $returnDiv .= "<div class=\"collapsible-body\">" . PHP_EOL;
@@ -294,9 +294,17 @@ class Request
             $returnDiv .= "<li>" . PHP_EOL;
             $returnDiv .= "<div class=\"collapsible-header hoverable green white-text\">" . PHP_EOL;
             $returnDiv .= "<div>" . PHP_EOL;
-            $returnDiv .= "<h5><i class=\"material-icons\">description</i>" . $arrayOneGists->name . "</h5>" . PHP_EOL;
+            //var_dump($arrayOneGists);
+            foreach ($arrayOneGists->files as $key => $arrayInfoGist) {
+                $name = $key;
+                $language = $arrayInfoGist->language;
+            }
+
+
+            $returnDiv .= "<h5><i class=\"material-icons\">description</i>" . $name . "</h5>" . PHP_EOL;
             $returnDiv .= "</div>" . PHP_EOL;
-            $returnDiv .= "<span class=\"lastCommit\">Last updated : " . $arrayOneGists->pushed_at . "</span>" . PHP_EOL;
+
+            $returnDiv .= "<span class=\"lastCommit\">Last updated : " . $arrayOneGists->created_at . "</span>" . PHP_EOL;
             $returnDiv .= "</div>" . PHP_EOL;
             $returnDiv .= "<div class=\"collapsible-body\">" . PHP_EOL;
             $returnDiv .= "<div class=\"center\">" . PHP_EOL;
@@ -304,9 +312,14 @@ class Request
             $returnDiv .= "</div>" . PHP_EOL;
             $returnDiv .= "</div>" . PHP_EOL;
             $returnDiv .= "<div class=\"collapsible-footer\">" . PHP_EOL;
-            $returnDiv .= "<div class=\"chip red white-text\">" . PHP_EOL;
-            $returnDiv .= "@language" . PHP_EOL;
-            $returnDiv .= "</div>" . PHP_EOL;
+
+            if ($language !== NULL) {
+                $returnDiv .= "<div class=\"chip red white-text\">" . PHP_EOL;
+                $returnDiv .= $language . PHP_EOL;
+                $returnDiv .= "</div>" . PHP_EOL;
+            }
+
+
             $returnDiv .= "<span>" . $arrayOneGists->forks . "</span>" . PHP_EOL;
             $returnDiv .= "</div>" . PHP_EOL;
             $returnDiv .= "</li>" . PHP_EOL;
