@@ -31,6 +31,7 @@ class Request
     {
         $token = "f99cb33f9c2608fd26d8a7b4338368fd71b821bd"; //token fantasia
         $returnDiv = "";
+        $token = '1ba7cd1007b0cec3674bf241740d2d014da6672e'; // Banban
         $prenom = $this->user;
         $url = 'https://api.github.com/users/Cerynna';
         $user = curl_init();
@@ -42,6 +43,7 @@ class Request
         $dataUser = curl_exec($user);
         curl_close($user);
         $arrayUser = json_decode($dataUser);
+
 
 
         $repos = curl_init();
