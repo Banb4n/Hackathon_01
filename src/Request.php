@@ -160,7 +160,6 @@ class Request
 
     public function snippetsFat()
     {
-        $token = "0e7062021bbb778ddf88014e727085c48e047a1c"; //token fantasia
         $returnDiv = "";
         $prenom = $this->user;
         $url = 'https://api.github.com/users/Cerynna';
