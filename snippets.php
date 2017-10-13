@@ -9,8 +9,8 @@ $arguments['gists'] = ["limit" => "D-3", "show"];
 
 echo serialize($arguments);
 
-$user = new Request("Banb4n", serialize($arguments));
+$user = new Request($_GET['user'], serialize($arguments));
 
 echo $user->snippetsLite();
-?>
+
 

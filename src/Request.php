@@ -8,7 +8,6 @@
 
 namespace FJA;
 
-use GuzzleHttp\Client;
 
 class Request
 {
@@ -31,31 +30,50 @@ class Request
     public function snippetsLite()
     {
         $returnDiv = "";
-        $prenom = $this->user;
-        $client = new \GuzzleHttp\Client();
-        /* USER OBJECT */
-        $resUser = $client->request('GET', 'https://api.github.com/users/' . $prenom, [
-            'auth' => ['Cerynna', 'jm147gm147']]);
-        $user = $resUser->getBody();
-        $arrayUser = json_decode($user);
-        /* REPOS OBJECT */
-        $resRepos = $client->request('GET', $arrayUser->repos_url, [
-            'auth' => ['Cerynna', 'jm147gm147']]);
-        $repos = $resRepos->getBody();
-        $arrayRepos = json_decode($repos);
-        /* GISTS OBJECT */
+
+        $user = curl_init('https://api.github.com/users/' . $this->user);
+        curl_setopt($user, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($user, CURLOPT_HEADER, 0);
+        curl_setopt($user, CURLOPT_TIMEOUT, 3);
+        curl_setopt($user, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 6.1; fr; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13');
+        curl_setopt($user, CURLOPT_HTTPHEADER, array('Content-Type: application/json', "Authorization: Bearer 43c45f5ba52c944fee8c7f4436b994818bc483ec"));
+        $dataUser = curl_exec($user);
+        curl_close($user);
+        $arrayUser = json_decode($dataUser);
+
+
+        $repos = curl_init("$arrayUser->repos_url");
+        curl_setopt($repos, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($repos, CURLOPT_HEADER, 0);
+        curl_setopt($repos, CURLOPT_TIMEOUT, 3);
+        curl_setopt($repos, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 6.1; fr; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13');
+        curl_setopt($repos, CURLOPT_HTTPHEADER, array('Content-Type: application/json', "Authorization: Bearer 43c45f5ba52c944fee8c7f4436b994818bc483ec"));
+        $dataRepos = curl_exec($repos);
+        curl_close($repos);
+        $arrayRepos = json_decode($dataRepos);
+        foreach ($arrayRepos as $key => $array) {
+            $sort[$key] = strtotime($array->pushed_at);
+            //$returnDiv .= $array->pushed_at . PHP_EOL;
+        }
+        array_multisort($sort, SORT_DESC, $arrayRepos);
+
         $linkGists = preg_replace("/(\{.*?\})/", "", $arrayUser->gists_url);
-        $resGists = $client->request('GET', $linkGists, [
-            'auth' => ['Cerynna', 'jm147gm147']]);
-        $gists = $resGists->getBody();
-        $arrayGists = json_decode($gists);
+
+        $gists = curl_init("$linkGists");
+        curl_setopt($gists, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($gists, CURLOPT_HEADER, 0);
+        curl_setopt($gists, CURLOPT_TIMEOUT, 3);
+        curl_setopt($gists, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 6.1; fr; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13');
+        curl_setopt($gists, CURLOPT_HTTPHEADER, array('Content-Type: application/json', "Authorization: Bearer 43c45f5ba52c944fee8c7f4436b994818bc483ec"));
+        $dataGists = curl_exec($gists);
+        curl_close($gists);
+        $arrayGists = json_decode($dataGists);
 
         foreach ($arrayUser as $key => $value) {
             if (in_array($key, $this->arguments['user'])) {
                 $arrayFinal['user'][$key] = $value;
             }
         }
-
         $limitRepos = $this->arguments['repos']['limit'];
 
 
@@ -72,7 +90,6 @@ class Request
             }
 
         }
-
         $limitGists = $this->arguments['gists']['limit'];
         $limiterGists = explode("-", $limitGists);
         $nbGists = $arrayUser->public_repos - 1;
@@ -85,17 +102,12 @@ class Request
             for ($i = $nbGists; $i > ($nbGists - $limiterGists[1]); $i--) {
                 $arrayFinal['gists'][$i] = $arrayGists[$i];
             }
-
         }
-        /* ARRAY FINAL */
 
 
 
         $returnDiv .= "<div class=\"app z-depth-4\">" . PHP_EOL;
         $returnDiv .= "<div class=\"appHeader\">" . PHP_EOL;
-
-
-
         if (in_array("avatar_url", $this->arguments['user'])) {
             $returnDiv .= "<img src=\"" . $arrayFinal['user']['avatar_url'] . "\" alt=\"imgProfil\" class=\"circle\" width=\"120px\" height=\"120px\">" . PHP_EOL;
         }
@@ -127,14 +139,9 @@ class Request
         if (in_array("show", $this->arguments['repos'])) {
             $returnDiv .= "<span>Les derniers depos :</span>" . PHP_EOL;
             $returnDiv .= "<ul>" . PHP_EOL;
-
             foreach ($arrayFinal['repos'] as $key => $arrayOneRepos) {
-
                 $returnDiv .= "<li>" . $arrayOneRepos->name . "</li>" . PHP_EOL;
-                //$returnDiv .= "<li>lol</li>" . PHP_EOL;
             }
-
-
             $returnDiv .= "</ul>" . PHP_EOL;
         }
         $returnDiv .= "</div>" . PHP_EOL;

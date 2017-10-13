@@ -6,8 +6,13 @@ if(isset($_POST)) {
     echo '<br />';
     echo serialize($_POST['repos']);
     echo '<br />';
+    $arguments['user'] = $_POST['user'];
+    $arguments['repos'] = $_POST['repos'];
+    $arguments['gists'] = ["limit" => "D-3", "show"];
 
-    echo serialize($_POST);
+     print_r($arguments);
+    echo "<br />";
+    echo "Array ( [user] => Array ( [0] => avatar_url [1] => name [2] => followers [3] => following [4] => public_repos [5] => public_gists ) [repos] => Array ( [limit] => F-3 [0] => show ) [gists] => Array ( [limit] => D-3 [0] => show ) ) ";
 }
 
 ?>
@@ -56,7 +61,7 @@ if(isset($_POST)) {
             <div class="input-field col s6">
                 <select name="repos[]">
                     <option value="" disabled selected>Afficher la liste des dépôts</option>
-                    <option value="show">Show</option>
+                    <option value="show" selected>Show</option>
                     <option value="hide">Hide</option>
                 </select>
                 <label for="displayList">Afficher la liste des dépôts</label>
