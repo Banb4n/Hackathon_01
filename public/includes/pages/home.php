@@ -1,9 +1,3 @@
-<!-- display home page -->
-<?php include(''); ?>
-
-<!--<iframe src='snippets.php?user=Banb4n&var=a:3:{s:4:"user";a:6:{i:0;s:4:"name";i:1;s:10:"avatar_url";i:2;s:9:"followers";i:3;s:9:"following";i:4;s:12:"public_repos";i:5;s:12:"public_gists";}s:5:"repos";a:2:{s:5:"limit";s:3:"D-3";i:0;s:4:"show";}s:5:"gists";a:2:{s:5:"limit";s:3:"D-3";i:0;s:4:"show";}}' frameborder="0" height="500px" width="500px"></iframe>-->
-
-
 <div>
     <object  style="width: 350px;height: 500px;" data='snippets.php?user=Banb4n&var=a:3:{s:4:"user";a:6:{i:0;s:4:"name";i:1;s:10:"avatar_url";i:2;s:9:"followers";i:3;s:9:"following";i:4;s:12:"public_repos";i:5;s:12:"public_gists";}s:5:"repos";a:2:{s:5:"limit";s:3:"D-3";i:0;s:4:"show";}s:5:"gists";a:2:{s:5:"limit";s:3:"D-3";i:0;s:4:"show";}}'
             type="text/html"></object>
@@ -25,41 +19,59 @@
     </div>
     <div class="modal-content">
         <ul id="tabs-swipe-demo" class="tabs tabs-fixed-width">
-            <li class="tab"><a href="#test-swipe-1">repos</a></li>
-            <li class="tab"><a href="#test-swipe-2">gists</a></li>
+            <li class="tab"><a href="#test-swipe-1">Les dépôts : </a></li>
+            <li class="tab"><a href="#test-swipe-2">Les gists : </a></li>
         </ul>
         <!--    depot     -->
         <div id="test-swipe-1" class="col s12 slideDetails">
             <ul class="collapsible popout" data-collapsible="accordion">
+                <!--  Tu boucle sur celle la  -->
                 <li>
-                    <div class="collapsible-header"><i class="material-icons">filter_drama</i>@depot1</div>
-                    <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                    <div class="collapsible-header hoverable blue white-text">
+                        <div>
+                            <h5><i class="material-icons">folder</i>@name</h5>
+                        </div>
+                        <span class="lastCommit">Last updated : @pushed_at</span>
+                    </div>
+                    <div class="collapsible-body">
+                        <div class="center">
+                            <a href="@html_url" class="" >Liens du dépôt : @html_url</a>
+                        </div>
+                    </div>
+                    <div class="collapsible-footer">
+                        <div class="chip red white-text">
+                            @language
+                        </div>
+                        <span>@forks Forks</span>
+                    </div>
                 </li>
-                <li>
-                    <div class="collapsible-header"><i class="material-icons">place</i>@depot2</div>
-                    <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                </li>
-                <li>
-                    <div class="collapsible-header"><i class="material-icons">whatshot</i>@depot3</div>
-                    <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                </li>
+
             </ul>
         </div>
         <!--   Gist     -->
         <div id="test-swipe-2" class="col s12 slideDetails">
             <ul class="collapsible popout" data-collapsible="accordion">
                 <li>
-                    <div class="collapsible-header"><i class="material-icons">filter_drama</i>@gist1</div>
-                    <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                    <div class="collapsible-header hoverable green white-text">
+                        <div>
+                            <h5><i class="material-icons">description</i>@filename</h5>
+                        </div>
+                        <span class="lastCommit">Last updated : @updated_at</span>
+                    </div>
+                    <div class="collapsible-body">
+                        <div class="center">
+                            <a href="@html_url" class="" >Liens du gists : @html_url</a>
+                        </div>
+                    </div>
+                    <div class="collapsible-footer">
+                        <div class="chip red white-text">
+                            @language
+                        </div>
+                        <span>@forks Forks</span>
+                    </div>
                 </li>
-                <li>
-                    <div class="collapsible-header"><i class="material-icons">place</i>@gist2</div>
-                    <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                </li>
-                <li>
-                    <div class="collapsible-header"><i class="material-icons">whatshot</i>@gist3</div>
-                    <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                </li>
+
+
             </ul>
         </div>
     </div>

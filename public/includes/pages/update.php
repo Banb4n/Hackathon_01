@@ -24,7 +24,7 @@ $serveur = str_replace('index.php','',$_SERVER['SCRIPT_URI']);
     echo "</pre>";
      echo "<&#63;php include ('" . $serveur ."snippets.php?user=" . $_POST['userName'] . "&var=" . serialize($arguments) . "');  &#63;>";
     echo "<br />";
-    echo "Array ( [user] => Array ( [0] => avatar_url [1] => name [2] => followers [3] => following [4] => public_repos [5] => public_gists ) [repos] => Array ( [limit] => F-3 [0] => show ) [gists] => Array ( [limit] => D-3 [0] => show ) ) ";
+    echo "Array ( [user] => Array ( [0] => avatar_url [1] => login [2] => followers [3] => following [4] => public_repos [5] => public_gists ) [repos] => Array ( [limit] => F-3 [0] => show ) [gists] => Array ( [limit] => D-3 [0] => show ) ) ";
 }
 
 ?>
@@ -40,7 +40,7 @@ $serveur = str_replace('index.php','',$_SERVER['SCRIPT_URI']);
         <div class="row">
             <div class="col s4">
                 <p>
-                    <input type="checkbox" id="displayUserName" checked="checked" name="user[]" value="name" />
+                    <input type="checkbox" id="displayUserName" checked="checked" name="user[]" value="login" />
                     <label for="displayUserName">Afficher le userName : </label>
                 </p>
                 <p>

@@ -16,7 +16,7 @@ $secondChoiceColorJs: lighblue;
   top: 50vh;
   transform: translatey(-50%);
   padding: 20px 10px;
-  background: rgba($choiceColorJs, 0.7);
+  background: rgba($choiceColorJs, 0.8);
 }
 
 .app {
@@ -72,4 +72,27 @@ $secondChoiceColorJs: lighblue;
 .slideDetails {
   padding: 50px 15px;
   background-color: lightgrey;
+}
+
+.collapsible {
+  li {
+    margin: 20px 0;
+  }
+  .collapsible-header {
+    display: flex;
+    justify-content: space-between;
+    &:hover {
+      background-color: #grey;
+    }
+  }
+  .collapsible-body {
+
+  }
+  .collapsible-footer {
+    padding: 10px 30px;
+    span {
+      margin-left: 50px;
+    }
+  }
+
 }
