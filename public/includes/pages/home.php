@@ -1,20 +1,15 @@
-
+<div class="centerApp center">
 <!-- display home page -->
 <?php
-require 'vendor/autoload.php';
+$preview =  file_get_contents("cache.html");
 
-use FJA\Request;
+$preview = str_replace('&#60;','<',$preview);
+$preview = str_replace('&#62;','>',$preview);
 
-$arguments['user'] = ["avatar_url", "login", "followers", "following", "public_repos", "public_gists"];
-$arguments['repos'] = ["limit" => "D-5", "show"];
-$arguments['gists'] = ["limit" => "D-13", "show"];
+echo $preview;
 
-$lol = new Request("Cerynna", serialize($arguments));
-
-echo $lol->snippetsLite();
-echo $lol->snippetsFat();
 ?>
-
+</div>
 <div class="fixed-action-btn">
     <a class="btn-floating btn-large red waves-effect waves-light" href="?page=update" title="updateDisplay">
         <i class="large material-icons">mode_edit</i>

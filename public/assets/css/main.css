@@ -94,4 +94,12 @@
   opacity: 1;
   transform: translateY(-2em); }
 
+.centerApp {
+  position: relative;
+  top: 50vh;
+  transform: translatey(-50%); }
+
+input[type="range"] {
+  border: none; }
+
 /*# sourceMappingURL=main.css.map */

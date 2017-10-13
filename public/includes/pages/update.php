@@ -14,9 +14,9 @@ if (isset($_POST)) {
 
     $returnDiv = "&#60;div&#62;&#60;object  style=\"width: 380px;height: 500px;\" data='" . $serveur[0] . "snippets.php?user=" . $_POST['userName'] . "&var=" . serialize($arguments) . $extention . "' type=\"text/html\"&#62;&#60;/object&#62; &#60;/div&#62;";
 
-    unlink("cache.html");
-    file_put_contents("cache.html", $returnDiv);
-    chmod("cache.html", 0777);
+//    unlink("cache.html");
+//    file_put_contents("cache.html", $returnDiv);
+//    chmod("cache.html", 0777);
 
 }
 
@@ -40,7 +40,7 @@ if (isset($_POST)) {
                 <form class="container" action="#" method="post">
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="userName" name="userName" type="text" class="validate" value="Banb4n">
+                            <input id="userName" name="userName" type="text" class="validate" required>
                             <label for="userName">@userName</label>
                         </div>
                     </div>
@@ -83,7 +83,7 @@ if (isset($_POST)) {
                         </div>
                     </div>
                     <div class="row">
-                        <div class="input-field col s6">
+                        <div class="input-field col s4">
                             <select name="repos[]">
                                 <option value="" disabled selected>Afficher la liste des dépôts</option>
                                 <option value="show" selected>Show</option>
@@ -91,7 +91,11 @@ if (isset($_POST)) {
                             </select>
                             <label for="displayList">Afficher la liste des dépôts</label>
                         </div>
-                        <p class="col s4 offset-s1">
+                        <div class="range-field col s4">
+                            <label for="test5">Nombres de depôt : </label>
+                            <input type="range" id="test5" min="1" max="6" />
+                        </div>
+                        <p class="col s4">
                             <input type="checkbox" id="extends" checked="checked" name="extends" value="true"/>
                             <label for="extends">Modal de détail : </label>
                         </p>
