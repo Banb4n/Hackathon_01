@@ -6,7 +6,7 @@ require 'vendor/autoload.php';
 use FJA\Request;
 
 $arguments['user'] = ["avatar_url", "login", "followers", "following", "public_repos", "public_gists"];
-$arguments['repos'] = ["limit" => "F-3", "show"];
+$arguments['repos'] = ["limit" => "D-5", "show"];
 $arguments['gists'] = ["limit" => "D-13", "show"];
 
 $lol = new Request("Cerynna", serialize($arguments));
