@@ -29,8 +29,23 @@ class Request
 
     public function snippetsLite()
     {
+
+
+
+
+
+// Délais d'expiration
+$expires = time() - 5*60;
+
+$file = "cache/$this->user.txt";
+
+// On ouvre le fichier
+if (file_exists($file)) {
+    if(filectime($file) < $expires){
+
+
         $returnDiv = "";
-        $token = '74dc724df6b0ded9220e326701c5d6bde8a95677'; // Banban
+        $token = '16e16506fe46c55ede8a658663f7eebbd2fa595f'; // Banban
 
         $url = "https://api.github.com/users/$this->user";
         $user = curl_init();
@@ -107,6 +122,24 @@ class Request
         }
 
 
+
+
+        $file = fopen($file, 'w+');
+        chmod($file,'0777');
+        unlink($file);
+        fwrite($file, serialize($arrayFinal));
+        fclose($file);
+
+
+    }
+    else {
+        $file = fopen($file, 'w+');
+        chmod($file,'0777');
+        $content = file_get_contents($file);
+        $arrayFinal = unserialize($content);
+        fclose($file);
+    }
+}
         $returnDiv .= "<div class=\"app z-depth-4\">" . PHP_EOL;
         $returnDiv .= "<div class=\"appHeader\">" . PHP_EOL;
         if (in_array("avatar_url", $this->arguments['user'])) {
@@ -160,7 +193,7 @@ class Request
     public function snippetsFat()
     {
         $returnDiv = "";
-        $token = '74dc724df6b0ded9220e326701c5d6bde8a95677'; // Banban
+        $token = '16e16506fe46c55ede8a658663f7eebbd2fa595f'; // Banban
         $url = "https://api.github.com/users/$this->user";
         $user = curl_init();
         curl_setopt($user, CURLOPT_URL, $url);
