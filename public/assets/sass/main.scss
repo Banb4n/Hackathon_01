@@ -72,10 +72,22 @@ $secondChoiceColorJs: lighblue;
       }
     }
 }
+ul, menu, dir {
+  display: block;
+  list-style-type: disc;
+  -webkit-margin-before: 0em;
+  -webkit-margin-after: 0em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  -webkit-padding-start: 0px;
+}
 
+.modal .modal-content {
+  padding: 0;
+}
 // Modal for details
 .modal-header {
-  padding: 20px 0 5px 10px;
+  padding: 5px 0 5px 10px;
   display: flex;
   justify-content: space-between;
   .following {
@@ -84,7 +96,7 @@ $secondChoiceColorJs: lighblue;
 }
 // Modal fixed bottom for details
 .modal.bottom-sheet {
-  min-height: 80%;
+  min-height: 90%;
 }
 // Tabs who contains the datas of repo
 .tab {
@@ -93,7 +105,7 @@ $secondChoiceColorJs: lighblue;
 }
 // Containers sliders tabs
 .slideDetails {
-  padding: 50px 15px;
+  padding: 5px 5px;
   background-color: ghostwhite;
   border: 1px solid lightgrey;
 }
@@ -101,7 +113,7 @@ $secondChoiceColorJs: lighblue;
 // Collapsible for details of depos
 .collapsible {
   li {
-    margin: 20px 0;
+    margin: 5px 0;
   }
   //header of Collapse
   .collapsible-header {

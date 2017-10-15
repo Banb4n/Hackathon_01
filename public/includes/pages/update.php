@@ -1,6 +1,9 @@
 <?php
+/*var_dump($_POST);*/
+if (isset($_POST['userName'])) {
 
-if (isset($_POST)) {
+    setcookie("userName", $_POST['userName']);
+
     $arguments['user'] = $_POST['user'];
     $arguments['repos'] = ["limit" => "D-" . $_POST['range']];
     $arguments['gists'] = ["limit" => "D-3", "show"];
@@ -14,9 +17,8 @@ if (isset($_POST)) {
 
     $returnDiv = "&#60;div&#62;&#60;object  style=\"width: 380px;height: 600px;\" data='" . $serveur . "snippets.php?user=" . $_POST['userName'] . "&var=" . serialize($arguments) . $extention . "' type=\"text/html\"&#62;&#60;/object&#62; &#60;/div&#62;";
 
-    unlink("cache.html");
-    file_put_contents("cache.html", $returnDiv);
-    chmod("cache.html", 0777);
+    file_put_contents("cache/". $_COOKIE['userName'] . ".cache", $returnDiv);
+
 }
 ?>
 <!-- form for update infos -->
@@ -24,7 +26,7 @@ if (isset($_POST)) {
     <div class="row">
         <div class="col s2">
             <?php
-            $preview = file_get_contents("cache.html");
+            $preview = file_get_contents("cache/". $_COOKIE['userName'] . ".cache");
             $preview = str_replace('&#60;', '<', $preview);
             $preview = str_replace('&#62;', '>', $preview);
             echo $preview;
@@ -34,7 +36,7 @@ if (isset($_POST)) {
             <form class="container" action="#" method="post">
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="userName" name="userName" type="text" class="validate" required/>
+                        <input id="userName" name="userName" type="text" class="validate" required <?php echo (isset($_COOKIE['userName']) ? 'value="' . $_COOKIE['userName'] . '"' : ""); ?>/>
                         <label for="userName">@userName</label>
                     </div>
                 </div>
@@ -98,7 +100,7 @@ if (isset($_POST)) {
                     <div class="input-field col s12">
 
                         <textarea id="to-copy" spellcheck="false" class="materialize-textarea"
-                                  readonly><?php echo file_get_contents("cache.html"); ?></textarea>
+                                  readonly><?php echo file_get_contents("cache/". $_COOKIE['userName'] . ".cache"); ?></textarea>
                         <a id="copy" class="btn" title="Copied HTML code"><i
                                     class="large material-icons">content_copy</i></a>
                         <label for="to-copy">Code HTML à intégrer</label>
