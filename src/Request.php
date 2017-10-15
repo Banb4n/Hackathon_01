@@ -11,8 +11,13 @@ namespace FJA;
 
 class Request
 {
+    /**
+     * @var
+     */
     public $user;
-
+    /**
+     * @var mixed
+     */
     public $arguments;
 
 
@@ -27,6 +32,11 @@ class Request
         $this->arguments = unserialize($arguments);
     }
 
+    /**
+     * @param $type
+     * @param $request
+     * @return mixed
+     */
     public function recupArray($type, $request)
     {
         $filename = "cache/$this->user.$type.log";
@@ -49,6 +59,10 @@ class Request
         }
     }
 
+    /**
+     * @param $request
+     * @return mixed
+     */
     public function recupCurl($request)
     {
         $token = file_get_contents("src/config.php");
@@ -74,30 +88,22 @@ class Request
      */
     public function snippetsLite($affichExtend)
     {
-        $returnDiv = "";
-        $arrayFinal = "";
-
-
         $arrayUser = $this->recupArray('user', "https://api.github.com/users/$this->user");
-
         foreach ($arrayUser as $key => $value) {
             if (in_array($key, $this->arguments["user"])) {
                 $arrayFinal["user"][$key] = $value;
             }
         }
-
         $arrayRepos = $this->recupArray('repos', "$arrayUser->repos_url");
-
         $limitRepos = $this->arguments['repos']['limit'];
                     for ($i = 0; $i < $limitRepos; $i++) {
                 $arrayFinal['repos'][$i] = $arrayRepos[$i];
             }
 
-
-
         /**
          * ON CREE LA DIV de BASE !!
          */
+        $returnDiv = "";
         $returnDiv .= "<div class=\"app z-depth-4\">" . PHP_EOL;
         $returnDiv .= "<div class=\"appHeader\">" . PHP_EOL;
         if (in_array("avatar_url", $this->arguments["user"])) {
@@ -126,8 +132,6 @@ class Request
             $returnDiv .= "<p class=\"countGists chip green white-text\">Gists : " . $arrayUser->public_gists . "</p>" . PHP_EOL;
         }
         $returnDiv .= "</div>" . PHP_EOL;
-
-
         if (in_array("show", $this->arguments['repos'])) {
             $returnDiv .= "<div class=\"divider\"></div>" . PHP_EOL;
             $returnDiv .= "<div class=\"deposApp\">" . PHP_EOL;
@@ -139,9 +143,7 @@ class Request
             $returnDiv .= "</ul>" . PHP_EOL;
             $returnDiv .= "</div>" . PHP_EOL;
         }
-
         $returnDiv .= "</div>" . PHP_EOL;
-
         if ($affichExtend == TRUE) {
 
             $returnDiv .= "<div class=\"appFooter center\">" . PHP_EOL;
@@ -149,26 +151,20 @@ class Request
             $returnDiv .= "<a class=\"waves-effect waves-light btn modal-trigger amber white-text\" href=\"#modal1\">Click here for more details</a>" . PHP_EOL;
             $returnDiv .= "</div>" . PHP_EOL;
         }
-
-
         $returnDiv .= "</div>" . PHP_EOL;
-
         //$returnDiv .= "";
         return $returnDiv;
     }
-
     /**
      * @return string
      */
     public function snippetsFat()
     {
         $returnDiv = "";
-
         $arrayUser = $this->recupArray('user', "https://api.github.com/users/$this->user");
         $arrayRepos = $this->recupArray('repos', "$arrayUser->repos_url");
         $linkGists = preg_replace("/(\{.*?\})/", "", $arrayUser->gists_url);
         $arrayGists = $this->recupArray('gists', "$linkGists");
-
         /**
          * ON CREE LA DIV de l'EXTENT !!
          */
@@ -183,10 +179,8 @@ class Request
         $returnDiv .= "<li class=\"tab\"><a href=\"#test-swipe-1\">repos</a></li>" . PHP_EOL;
         $returnDiv .= "<li class=\"tab\"><a href=\"#test-swipe-2\">gists</a></li>" . PHP_EOL;
         $returnDiv .= "</ul>" . PHP_EOL;
-
         $returnDiv .= "<div id=\"test-swipe-1\" class=\"col s12 slideDetails\">" . PHP_EOL;
         $returnDiv .= "<ul class=\"collapsible popout\" data-collapsible=\"accordion\">" . PHP_EOL;
-
         foreach ($arrayRepos as $key => $arrayOneRepos) {
             $returnDiv .= "<li>";
             $returnDiv .= "<div class=\"collapsible-header hoverable blue white-text\">";
@@ -203,49 +197,36 @@ class Request
             $returnDiv .= "</div>" . PHP_EOL;
             $returnDiv .= "</div>" . PHP_EOL;
             $returnDiv .= "</div>" . PHP_EOL;
-
             $returnDiv .= "<div class=\"collapsible-body\">" . PHP_EOL;
             $returnDiv .= "<div class=\"center\">" . PHP_EOL;
             $returnDiv .= "Lien du dépôt : <a href='" . $arrayOneRepos->html_url . "'>" . $arrayOneRepos->html_url . "</a>" . PHP_EOL;
             $returnDiv .= "</div>" . PHP_EOL;
             $returnDiv .= "</div>" . PHP_EOL;
             $returnDiv .= "<div class=\"collapsible-footer\">" . PHP_EOL;
-
             if ($arrayOneRepos->language !== NULL) {
                 $returnDiv .= "<div class=\"chip red white-text\">" . PHP_EOL;
                 $returnDiv .= $arrayOneRepos->language . PHP_EOL;
                 $returnDiv .= "</div>" . PHP_EOL;
             }
-
-
             $returnDiv .= "<span>" . $arrayOneRepos->forks . " Forks</span>" . PHP_EOL;
             $returnDiv .= "</div>" . PHP_EOL;
             $returnDiv .= "</li>" . PHP_EOL;
         }
-
         $returnDiv .= "</ul>" . PHP_EOL;
         $returnDiv .= "</div>" . PHP_EOL;
-
-
         $returnDiv .= "<div id=\"test-swipe-2\" class=\"col s12 slideDetails\">" . PHP_EOL;
         $returnDiv .= "<ul class=\"collapsible popout\" data-collapsible=\"accordion\">" . PHP_EOL;
-
         foreach ($arrayGists as $key => $arrayOneGists) {
-
             $returnDiv .= "<li>" . PHP_EOL;
             $returnDiv .= "<div class=\"collapsible-header hoverable green white-text\">" . PHP_EOL;
-
-            //var_dump($arrayOneGists);
             foreach ($arrayOneGists->files as $name => $arrayInfoGist) {
                 $language = $arrayInfoGist->language;
             }
             $returnDiv .= "<div class=\"container-fluid\">";
             $returnDiv .= "<div class=\"row\">";
-
             $returnDiv .= "<div>" . PHP_EOL;
             $returnDiv .= "<h5><i class=\"material-icons\">description</i>" . $name . "</h5>" . PHP_EOL;
             $returnDiv .= "</div>" . PHP_EOL;
-
             $returnDiv .= "</div>" . PHP_EOL;
             $returnDiv .= "<div class=\"row\">";
             $returnDiv .= "<div>";
@@ -254,35 +235,26 @@ class Request
             $returnDiv .= "</div>" . PHP_EOL;
             $returnDiv .= "</div>" . PHP_EOL;
             $returnDiv .= "</div>" . PHP_EOL;
-
-
             $returnDiv .= "<div class=\"collapsible-body\">" . PHP_EOL;
             $returnDiv .= "<div class=\"center\">" . PHP_EOL;
             $returnDiv .= "Lien du gist : <a href='" . $arrayOneGists->html_url . "'>" . $arrayOneGists->html_url . "</a>" . PHP_EOL;
             $returnDiv .= "</div>" . PHP_EOL;
             $returnDiv .= "</div>" . PHP_EOL;
             $returnDiv .= "<div class=\"collapsible-footer\">" . PHP_EOL;
-
             if ($language !== NULL) {
                 $returnDiv .= "<div class=\"chip red white-text\">" . PHP_EOL;
                 $returnDiv .= $language . PHP_EOL;
                 $returnDiv .= "</div>" . PHP_EOL;
             }
-
-
             $returnDiv .= "<span>" . $arrayOneGists->forks . "</span>" . PHP_EOL;
             $returnDiv .= "</div>" . PHP_EOL;
             $returnDiv .= "</li>" . PHP_EOL;
         }
-
-
         $returnDiv .= "</ul>" . PHP_EOL;
-
         $returnDiv .= "</div>" . PHP_EOL;
         $returnDiv .= "</div>" . PHP_EOL;
         $returnDiv .= "</div>" . PHP_EOL;
         //$returnDiv .= "";
-
         return $returnDiv;
     }
 }
