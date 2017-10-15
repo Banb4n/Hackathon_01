@@ -34,17 +34,15 @@ class Request
             $array = $this->recupCurl("$request");
             file_put_contents("$filename", serialize($array));
             return $array;
-        }
-        else {
+        } else {
             $time = filemtime("$filename");
             $maintenant = time();
-            $ecart = round(($maintenant - $time)/60);
+            $ecart = round(($maintenant - $time) / 60);
             if ($ecart >= 5) {
                 $array = $this->recupCurl("$request");
                 file_put_contents("$filename", serialize($array));
                 return $array;
-            }
-            else {
+            } else {
                 return unserialize(file_get_contents("$filename"));
             }
 
@@ -80,8 +78,7 @@ class Request
         $arrayFinal = "";
 
 
-
-        $arrayUser = $this->recupArray('user',"https://api.github.com/users/$this->user");
+        $arrayUser = $this->recupArray('user', "https://api.github.com/users/$this->user");
 
         foreach ($arrayUser as $key => $value) {
             if (in_array($key, $this->arguments["user"])) {
@@ -89,22 +86,13 @@ class Request
             }
         }
 
-        $arrayRepos = $this->recupArray('repos',"$arrayUser->repos_url");
+        $arrayRepos = $this->recupArray('repos', "$arrayUser->repos_url");
 
         $limitRepos = $this->arguments['repos']['limit'];
-        $limiterRepos = explode("-", $limitRepos);
-        $nbRepos = $arrayUser->public_repos - 1;
-        if ($limiterRepos[0] == "D") {
-            for ($i = 0; $i < $limiterRepos[1]; $i++) {
-                $arrayFinal['repos'][$i] = $arrayRepos[$i];
-            }
-        }
-        if ($limiterRepos[0] == "F") {
-            for ($i = $nbRepos; $i > ($nbRepos - $limiterRepos[1]); $i--) {
+                    for ($i = 0; $i < $limitRepos; $i++) {
                 $arrayFinal['repos'][$i] = $arrayRepos[$i];
             }
 
-        }
 
 
         /**
@@ -113,46 +101,51 @@ class Request
         $returnDiv .= "<div class=\"app z-depth-4\">" . PHP_EOL;
         $returnDiv .= "<div class=\"appHeader\">" . PHP_EOL;
         if (in_array("avatar_url", $this->arguments["user"])) {
-            $returnDiv .= "<img src=\"" . $arrayFinal["user"]['avatar_url'] . "\" alt=\"imgProfil\" class=\"circle\" width=\"120px\" height=\"120px\">" . PHP_EOL;
+            $returnDiv .= "<img src=\"" . $arrayUser->avatar_url . "\" alt=\"imgProfil\" class=\"circle\" width=\"120px\" height=\"120px\">" . PHP_EOL;
         }
         $returnDiv .= "<div class=\"infos\">" . PHP_EOL;
         if (in_array("login", $this->arguments["user"])) {
-            $returnDiv .= "<span class=\"userName\">@" . $arrayFinal["user"]['login'] . "</span>" . PHP_EOL;
+            $returnDiv .= "<span class=\"userName\">@" . $arrayUser->login . "</span>" . PHP_EOL;
         }
         $returnDiv .= "<div class=\"appFollow\">" . PHP_EOL;
         if (in_array("followers", $this->arguments["user"])) {
-            $returnDiv .= "<span class=\"followers chip amber white-text\">Followers : " . $arrayFinal["user"]['followers'] . "</span>" . PHP_EOL;
+            $returnDiv .= "<span class=\"followers chip amber white-text\">Followers : " . $arrayUser->followers . "</span>" . PHP_EOL;
         }
         $returnDiv .= "<br>" . PHP_EOL;
         if (in_array("following", $this->arguments["user"])) {
-            $returnDiv .= "<span class=\"following chip amber white-text\">Following : " . $arrayFinal["user"]['following'] . "</span>" . PHP_EOL;
+            $returnDiv .= "<span class=\"following chip amber white-text\">Following : " . $arrayUser->following . "</span>" . PHP_EOL;
         }
         $returnDiv .= "</div></div></div>" . PHP_EOL;
         $returnDiv .= "<div class=\"divider\"></div>" . PHP_EOL;
         $returnDiv .= "<div class=\"appRepos\">" . PHP_EOL;
         $returnDiv .= "<div class=\"countCreate\">" . PHP_EOL;
         if (in_array("public_repos", $this->arguments["user"])) {
-            $returnDiv .= "<p class=\"countRepos chip blue white-text\">Depots : " . $arrayFinal["user"]['public_repos'] . "</p>" . PHP_EOL;
+            $returnDiv .= "<p class=\"countRepos chip blue white-text\">Depots : " . $arrayUser->public_repos . "</p>" . PHP_EOL;
         }
         if (in_array("public_gists", $this->arguments["user"])) {
-            $returnDiv .= "<p class=\"countGists chip green white-text\">Gists : " . $arrayFinal["user"]['public_gists'] . "</p>" . PHP_EOL;
+            $returnDiv .= "<p class=\"countGists chip green white-text\">Gists : " . $arrayUser->public_gists . "</p>" . PHP_EOL;
         }
         $returnDiv .= "</div>" . PHP_EOL;
-        $returnDiv .= "<div class=\"divider\"></div>" . PHP_EOL;
-        $returnDiv .= "<div class=\"deposApp\">" . PHP_EOL;
+
+
         if (in_array("show", $this->arguments['repos'])) {
+            $returnDiv .= "<div class=\"divider\"></div>" . PHP_EOL;
+            $returnDiv .= "<div class=\"deposApp\">" . PHP_EOL;
             $returnDiv .= "<span>Les derniers depos :</span>" . PHP_EOL;
             $returnDiv .= "<ul>" . PHP_EOL;
             foreach ($arrayFinal['repos'] as $key => $arrayOneRepos) {
                 $returnDiv .= "<li><i class=\"material-icons blue-text\">folder</i> " . $arrayOneRepos->name . "</li>" . PHP_EOL;
             }
             $returnDiv .= "</ul>" . PHP_EOL;
+            $returnDiv .= "</div>" . PHP_EOL;
         }
-        $returnDiv .= "</div>" . PHP_EOL;
+
         $returnDiv .= "</div>" . PHP_EOL;
 
         if ($affichExtend == TRUE) {
+
             $returnDiv .= "<div class=\"appFooter center\">" . PHP_EOL;
+            $returnDiv .= "<div class=\"divider\"></div>" . PHP_EOL;
             $returnDiv .= "<a class=\"waves-effect waves-light btn modal-trigger amber white-text\" href=\"#modal1\">Click here for more details</a>" . PHP_EOL;
             $returnDiv .= "</div>" . PHP_EOL;
         }
@@ -171,10 +164,10 @@ class Request
     {
         $returnDiv = "";
 
-        $arrayUser = $this->recupArray('user',"https://api.github.com/users/$this->user");
-        $arrayRepos = $this->recupArray('repos',"$arrayUser->repos_url");
+        $arrayUser = $this->recupArray('user', "https://api.github.com/users/$this->user");
+        $arrayRepos = $this->recupArray('repos', "$arrayUser->repos_url");
         $linkGists = preg_replace("/(\{.*?\})/", "", $arrayUser->gists_url);
-        $arrayGists = $this->recupArray('gists',"$linkGists");
+        $arrayGists = $this->recupArray('gists', "$linkGists");
 
         /**
          * ON CREE LA DIV de l'EXTENT !!

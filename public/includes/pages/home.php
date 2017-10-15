@@ -8,7 +8,7 @@ else {
 }
 
   
-$preview =  file_get_contents("cache/". $user . "cache.cache");
+$preview =  file_get_contents("cache/". $user . ".cache");
 
 $preview = str_replace('&#60;','<',$preview);
 $preview = str_replace('&#62;','>',$preview);

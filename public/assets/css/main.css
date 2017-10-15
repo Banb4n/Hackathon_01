@@ -21,6 +21,8 @@
   top: 50vh;
   transform: translatey(-50%);
   position: relative; }
+  .app .btn {
+    margin-top: 20px; }
   .app .appHeader {
     display: flex;
     justify-content: space-around;
